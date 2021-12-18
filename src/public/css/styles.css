@@ -71,6 +71,7 @@ body {
 
 .nav-responsive {
   position: absolute;
+  overflow: hidden;
   top: 0;
   right: 0;
   background: rgba(9, 75, 101, 0.8);
@@ -154,7 +155,7 @@ body {
 
 section {
   position: relative;
-  top: 10vh;
+  top: 0h;
   width: 100%;
   height: 100vh;
   display: -webkit-box;
@@ -175,6 +176,9 @@ section #text {
   text-align: center;
   line-height: 0.55em;
   font-family: 'Rancho',cursive;
+  -webkit-transform: translateY(-75%);
+          transform: translateY(-75%);
+  z-index: 100;
 }
 
 section #text span {
@@ -186,7 +190,7 @@ section #text span {
 
 section img {
   position: absolute;
-  top: 0vh;
+  top: 20vh;
   left: 0;
   width: 100%;
   height: 100%;
@@ -198,7 +202,7 @@ section img {
 section:before {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -20vh;
   left: 0;
   width: 100%;
   height: 100px;
@@ -207,7 +211,19 @@ section:before {
   z-index: 100000;
 }
 
+#bird2 {
+  -webkit-transform: translateX(-90px) translateY(-90px);
+          transform: translateX(-90px) translateY(-90px);
+}
+
+#bird1 {
+  -webkit-transform: translateX(60px) translateY(-60px);
+          transform: translateX(60px) translateY(-60px);
+}
+
 #btn {
+  position: absolute;
+  bottom: 20vh;
   text-decoration: none;
   display: inline-block;
   padding: 8px 30px;
@@ -228,22 +244,18 @@ section:before {
 }
 
 .sec {
+  top: 20vh;
   width: 100%;
-  min-height: 100vh;
   position: relative;
   background: #094b65;
-}
-
-.sec.first {
-  padding: 30px 0 0 0;
-  margin-top: 55px;
+  padding: 30px;
 }
 
 .sec h2 {
   text-align: center;
   font-size: 2.5em;
   color: #fff;
-  margin-bottom: 30px;
+  margin-top: 30px;
   text-shadow: 4px 6px rgba(0, 0, 0, 0.5);
 }
 
@@ -308,7 +320,6 @@ section:before {
 
 .carousel {
   width: 100%;
-  overflow: hidden;
 }
 
 .carousel .glider-contain {
@@ -340,8 +351,6 @@ section:before {
   color: #fff;
   height: 100px;
   width: 40px;
-  -webkit-transform: translateY(calc(50%-50%));
-          transform: translateY(calc(50%-50%));
   font-size: 1.5em;
   -webkit-transition: .2s ease background;
   transition: .2s ease background;
@@ -395,6 +404,7 @@ section:before {
 @media (max-width: 450px) {
   #header {
     padding: 30px 10px;
+    background: red;
   }
   #btn {
     padding: 4px 15px;
