@@ -135,7 +135,7 @@ section{
     #text{
         position: absolute;
         color: $first;
-        font-size: 1.8em;
+        font-size: 10vh;
         text-align: center;
         line-height: 0.55em;
         font-family: 'Rancho',cursive;  
@@ -335,6 +335,9 @@ section{
         .container .card{
         width: 90%; 
     }  
+    #text{
+        font-size: 25vh;
+    }
    
 }
 
@@ -343,7 +346,7 @@ section{
         padding: 30px 10px;
     }
     #btn{
-        bottom: 30vh;
+        bottom: 20vh;
         padding: 4px 15px;
         font-size: 1em;
     }

@@ -60,7 +60,7 @@
               next: '.glider-next'
             },responsive: [
                 {
-                  breakpoint: 450,
+                  breakpoint: 500,
                   settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
