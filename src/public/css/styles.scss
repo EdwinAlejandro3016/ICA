@@ -135,7 +135,7 @@ section{
     #text{
         position: absolute;
         color: $first;
-        font-size: 10vh;
+        font-size: 20vh;
         text-align: center;
         line-height: 0.55em;
         font-family: 'Rancho',cursive;  
@@ -336,9 +336,9 @@ section{
         .container .card{
         width: 90%; 
     }  
-    #text{
-        font-size: 30vh;
-    }
+    // #text{
+    //     font-size: 30vh;
+    // }
     #bird2{ 
         transform: translateX(-25px) translateY(-25px);    
     }
@@ -349,6 +349,9 @@ section{
 }
 
 @media (max-width: 450px){
+    #text{
+        font-size: 30vh;
+    } 
     #header{
         padding: 30px 10px;
     }

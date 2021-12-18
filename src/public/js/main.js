@@ -60,12 +60,13 @@
               next: '.glider-next'
             },responsive: [
                 {
-                  breakpoint: 500,
-                  settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                  }
-                },{
+                    breakpoint: 350, 
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1,
+                    }
+                  },
+                {
                   breakpoint: 700, 
                   settings: {
                     slidesToShow: 2,
