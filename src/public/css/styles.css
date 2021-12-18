@@ -34,7 +34,7 @@ body {
 #header .logo {
   color: #094b65;
   font-weight: 700;
-  font-size: 2em;
+  font-size: 1.8em;
   text-decoration: none;
 }
 
@@ -172,7 +172,7 @@ section {
 section #text {
   position: absolute;
   color: #094b65;
-  font-size: 10vw;
+  font-size: 1.8em;
   text-align: center;
   line-height: 0.55em;
   font-family: 'Rancho',cursive;
@@ -255,7 +255,7 @@ section:before {
   text-align: center;
   font-size: 2.5em;
   color: #fff;
-  margin-top: 30px;
+  margin: 15px 0;
   text-shadow: 4px 6px rgba(0, 0, 0, 0.5);
 }
 
@@ -404,9 +404,9 @@ section:before {
 @media (max-width: 450px) {
   #header {
     padding: 30px 10px;
-    background: red;
   }
   #btn {
+    bottom: 30vh;
     padding: 4px 15px;
     font-size: 1em;
   }
@@ -415,6 +415,9 @@ section:before {
   }
   .card .dailyVerses {
     font-size: 1em;
+  }
+  .carousel .glaider-contain {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=styles.css.map */
