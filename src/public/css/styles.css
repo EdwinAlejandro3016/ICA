@@ -14,7 +14,8 @@ body {
 }
 
 #header {
-  position: absolute;
+  position: fixed;
+  background: #fff;
   top: 0;
   left: 0;
   width: 100%;
@@ -29,6 +30,14 @@ body {
       -ms-flex-align: center;
           align-items: center;
   z-index: 900;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+#header.sticky {
+  padding: 20px 100px;
+  -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 #header .logo {
@@ -38,7 +47,7 @@ body {
   text-decoration: none;
 }
 
-#header ul {
+#header .navigation {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -48,14 +57,17 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
-#header ul li {
+#header .navigation li {
+  text-align: center;
   list-style: none;
   margin-left: 20px;
 }
 
-#header ul li a {
+#header .navigation li a {
   text-decoration: none;
   padding: 6px 15px;
   border-radius: 20px;
@@ -64,7 +76,7 @@ body {
   transition: .2s background ease;
 }
 
-#header ul li a:hover, #header ul li a.activo {
+#header .navigation li a:hover, #header .navigation li a.activo {
   background-color: #094b65;
   color: #fff;
 }
@@ -155,9 +167,9 @@ body {
 
 section {
   position: relative;
-  top: 0h;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -202,7 +214,7 @@ section img {
 section:before {
   content: '';
   position: absolute;
-  bottom: -20vh;
+  bottom: -20.1vh;
   left: 0;
   width: 100%;
   height: 100px;
@@ -212,13 +224,13 @@ section:before {
 }
 
 #bird2 {
-  -webkit-transform: translateX(-90px) translateY(-90px);
-          transform: translateX(-90px) translateY(-90px);
+  -webkit-transform: translateX(-8%) translateY(-12%);
+          transform: translateX(-8%) translateY(-12%);
 }
 
 #bird1 {
-  -webkit-transform: translateX(60px) translateY(-60px);
-          transform: translateX(60px) translateY(-60px);
+  -webkit-transform: translateX(5%) translateY(-10%);
+          transform: translateX(5%) translateY(-10%);
 }
 
 #btn {
@@ -248,7 +260,7 @@ section:before {
   width: 100%;
   position: relative;
   background: #094b65;
-  padding: 30px;
+  padding: 40px 0;
 }
 
 .sec h2 {
@@ -360,26 +372,43 @@ section:before {
 }
 
 @media (max-width: 1200px) {
-  #header ul li {
-    display: none;
-  }
   #bars {
     display: block;
   }
+  #header .navigation {
+    display: none;
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   #header {
     padding: 30px 50px;
   }
   #header .logo {
     font-size: 1.5em;
   }
+  #header.sticky {
+    padding: 20px 50px;
+  }
   .sec h2 {
     font-size: 1.8em;
   }
   .container .card {
     width: 80%;
+  }
+  section #text {
+    font-size: 15vh;
+  }
+}
+
+@media (min-width: 800px) {
+  section #bird2 {
+    -webkit-transform: translateX(-16%) translateY(-16%);
+            transform: translateX(-16%) translateY(-16%);
+  }
+  section #bird1 {
+    -webkit-transform: translateX(10%) translateY(-14%);
+            transform: translateX(10%) translateY(-14%);
   }
 }
 
@@ -394,27 +423,22 @@ section:before {
   .container .card {
     width: 90%;
   }
-  #bird2 {
-    -webkit-transform: translateX(-25px) translateY(-25px);
-            transform: translateX(-25px) translateY(-25px);
-  }
-  #bird1 {
-    -webkit-transform: translateX(10px) translateY(-10px);
-            transform: translateX(10px) translateY(-10px);
-  }
 }
 
-@media (max-width: 450px) {
-  #text {
-    font-size: 30vh;
-  }
+@media (max-width: 480px) {
   #header {
     padding: 30px 10px;
+  }
+  #header.sticky {
+    padding: 15px 10px;
   }
   #btn {
     bottom: 23vh;
     padding: 4px 15px;
     font-size: 1em;
+  }
+  section #text {
+    font-size: 10vh;
   }
   .card {
     width: 300px;

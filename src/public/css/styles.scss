@@ -24,28 +24,36 @@ body{
 
 // navbar
 
-#header{
-    position: absolute;
+#header{ 
+    position: fixed;
+    background: #fff; 
     top: 0;
     left: 0;
     width: 100%;
     padding: 30px 100px;
-    display: flex;
+    display: flex; 
     justify-content: space-between;
     align-items: center;
     z-index: 900;
+    transition: .5s;  
+    &.sticky{
+        padding: 20px 100px;
+        box-shadow: 0 5px 20px rgba(0,0,0,.05);
+    }
     .logo{
         color: $first;
-        font-weight: 700;
+        font-weight: 700; 
         font-size: 1.8em;
         text-decoration: none;
     }
-    ul{
+    .navigation{ 
         @include center();
+        transition: .5s;
         li{
+            text-align: center;
             list-style: none;
             margin-left: 20px;
-            a{
+            a{ 
                 text-decoration: none;
                 padding: 6px 15px;
                 border-radius: 20px;
@@ -57,6 +65,36 @@ body{
                 }
             }
         }
+        // &.activo{
+        //     width: 50%;
+        //     height: 100%; 
+        //     position: fixed;
+        //     top: 0; 
+        //     right: 0;
+        //     flex-direction: column;
+        //     background: rgba($first,.8);
+        //         li{
+        //             list-style: none;
+        //             padding: 30px 0;
+        //             width: 100%;
+        //             margin-left: 0;
+        //             cursor:pointer;
+        //             transition: .2s ease background;
+        //             &:hover{
+        //                 background: $first;
+        //             }
+        //             a{ 
+        //                 text-decoration: none;
+        //                 font-size: 1.3em;
+        //                 font-weight: 500;
+        //                 color: #fff;
+        //                 &.activo{
+        //                     background: none;
+        //                 }
+        //             }
+        //         }
+            
+        // }
     }
 }
 
@@ -123,15 +161,16 @@ body{
     } 
 } 
 
+
  
 // section
 
 section{
     position: relative; 
-    top: 0h; 
     width: 100%;
     height: 100vh;
-    @include center(); 
+    overflow:hidden;
+    @include center();  
     #text{
         position: absolute;
         color: $first;
@@ -162,7 +201,7 @@ section{
     &:before{
         content: '';
         position: absolute;
-        bottom: -20vh;
+        bottom: -20.1vh;
         left: 0;
         width: 100%;
         height: 100px;
@@ -172,10 +211,10 @@ section{
 }
 
         #bird2{ 
-            transform: translateX(-90px) translateY(-90px);    
+            transform: translateX(-8%) translateY(-12%);    
         }
         #bird1{
-            transform: translateX(60px) translateY(-60px); 
+            transform: translateX(5%) translateY(-10%); 
         }
 
 #btn{
@@ -202,13 +241,13 @@ section{
     width: 100%; 
     position: relative;  
     background: $first;
-    padding: 30px;
+    padding: 40px 0;
     h2{
         text-align: center; 
         font-size: 2.5em;
         color: #fff; 
         margin: 15px 0;
-        text-shadow: 4px 6px rgba(0,0,0,.5);
+        text-shadow: 4px 6px rgba(0,0,0,.5); 
 
     }
 }
@@ -301,20 +340,22 @@ section{
     //MEDIA
 
 @media (max-width: 1200px) {
-    #header ul li{
-        display: none;
-    }
-
     #bars{
         display: block;
     }
-
+    #header .navigation{
+        display:none;
+    }
+ 
 }
-@media (max-width: 768px){
+@media (max-width: 800px){
     #header{
         padding: 30px 50px;
         .logo{
             font-size: 1.5em; 
+        }
+        &.sticky{
+            padding: 20px 50px;
         }
     }
     .sec h2{
@@ -323,8 +364,19 @@ section{
     .container .card{
         width: 80%; 
     }
+    section #text{
+        font-size: 15vh;
+    }
+
 } 
- 
+@media (min-width: 800px){  
+    section #bird2{ 
+        transform: translateX(-16%) translateY(-16%);    
+    }
+    section #bird1{
+        transform: translateX(10%) translateY(-14%);  
+    } 
+}
 @media (max-width: 600px) {
     .nav-responsive{
         width: 100%;
@@ -336,29 +388,23 @@ section{
         .container .card{
         width: 90%; 
     }  
-    // #text{
-    //     font-size: 30vh;
-    // }
-    #bird2{ 
-        transform: translateX(-25px) translateY(-25px);    
-    }
-    #bird1{
-        transform: translateX(10px) translateY(-10px); 
-    }
-   
 }
 
-@media (max-width: 450px){
-    #text{
-        font-size: 30vh;
-    } 
+@media (max-width: 480px){
+
     #header{
         padding: 30px 10px;
+        &.sticky{
+            padding: 15px 10px;
+        }
     }
     #btn{
         bottom: 23vh;
         padding: 4px 15px;
         font-size: 1em;
+    }
+    section #text{ 
+        font-size: 10vh;
     }
     .card{
         width: 300px;

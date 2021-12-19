@@ -5,6 +5,7 @@
     let rocks = document.getElementById('rocks');
     let water = document.getElementById('water');
     let header = document.getElementById('header');
+    const navigation = document.querySelector('.navigation');
 
     //carousel
     const carousel = document.getElementById('carousel');
@@ -17,36 +18,32 @@
     const btnSalir = document.getElementById('salir');
     const body = document.getElementsByTagName('body')[0];
 
-          // animation section
+    window.addEventListener('scroll',()=>{
+        header.classList.toggle('sticky', window.scrollY > 0);
 
-    // self.addEventListener('scroll',()=>{
-    //     let value = window.scrollY;
-    //     text.style.top = 50 + value * -0.5 + '%';
-    //     bird1.style.top = value * -1.5 + 'px';
-    //     bird1.style.left = value * 2 + 'px';
-    //     bird2.style.top = value * -1.5 + 'px';
-    //     bird2.style.left = value * -5 + 'px';
-    //     btn.style.marginTop = value * 1.5 + 'px';
-    //     rocks.style.top = value * -0.12 + 'px';
-    //     forest.style.top = value * 0.25 + 'px';
-    //     header.style.top = value * 0.5 + 'px'; 
-    // })
-
-
+    })
 
     //navbar-responsive animation
 
     bars.addEventListener('click',()=>{
-        navbar.classList.add('activo');
-        bars.style.display = 'none';
-        body.style.overflowY = 'hidden';
+        
+        navbar.classList.toggle('activo');
+
+        if( navbar.classList.contains('activo')){
+          bars.style.color = '#fff';
+           bars.classList.replace('fa-bars','fa-times'); 
+        }else{
+          bars.style.color = "rgba(9, 75, 101,.8)";
+          bars.classList.replace('fa-times','fa-bars');        
+        }
+        // bars.style.display = 'none';
     });
 
-    btnSalir.addEventListener('click',()=>{
-        navbar.classList.remove('activo'); 
-        bars.style.display = 'block';
-        body.style.overflowY = 'visible';
-    });
+    // btnSalir.addEventListener('click',()=>{
+    //     navbar.classList.remove('activo'); 
+    //     bars.style.display = 'block';
+    //     body.style.overflowY = 'visible';
+    // });
 
 
     //carousel
