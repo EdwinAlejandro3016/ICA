@@ -26,26 +26,19 @@
     //navbar-responsive animation
 
     bars.addEventListener('click',()=>{
-        
         navbar.classList.toggle('activo');
 
         if( navbar.classList.contains('activo')){
           bars.style.color = '#fff';
-           bars.classList.replace('fa-bars','fa-times'); 
+          bars.classList.replace('fa-bars','fa-times'); 
+          body.style.overflowY = "hidden";
+
         }else{
           bars.style.color = "rgba(9, 75, 101,.8)";
-          bars.classList.replace('fa-times','fa-bars');        
+          bars.classList.replace('fa-times','fa-bars');  
+          body.style.overflowY = "visible";
         }
-        // bars.style.display = 'none';
     });
-
-    // btnSalir.addEventListener('click',()=>{
-    //     navbar.classList.remove('activo'); 
-    //     bars.style.display = 'block';
-    //     body.style.overflowY = 'visible';
-    // });
-
-
     //carousel
     window.addEventListener('load',function(){
         new Glider(document.querySelector('.glider'),{
