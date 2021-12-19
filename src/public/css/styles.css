@@ -211,18 +211,6 @@ section img {
   pointer-events: none;
 }
 
-section:before {
-  content: '';
-  position: absolute;
-  bottom: -20.1vh;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background: -webkit-gradient(linear, left bottom, left top, from(#094b65), to(transparent));
-  background: linear-gradient(to top, #094b65, transparent);
-  z-index: 100000;
-}
-
 #bird2 {
   -webkit-transform: translateX(-8%) translateY(-12%);
           transform: translateX(-8%) translateY(-12%);
@@ -231,6 +219,30 @@ section:before {
 #bird1 {
   -webkit-transform: translateX(5%) translateY(-10%);
           transform: translateX(5%) translateY(-10%);
+}
+
+.agua {
+  overflow: hidden;
+  width: 100%;
+  height: 20vh;
+  position: relative;
+}
+
+.agua:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: -webkit-gradient(linear, left bottom, left top, from(#094b65), to(transparent));
+  background: linear-gradient(to top, #094b65, transparent);
+  z-index: 100000;
+}
+
+.agua #water {
+  position: absolute;
+  bottom: -14vh;
 }
 
 #btn {
@@ -256,11 +268,15 @@ section:before {
 }
 
 .sec {
-  top: 20vh;
   width: 100%;
   position: relative;
   background: #094b65;
   padding: 40px 0;
+  bottom: 4px;
+}
+
+.sec.first {
+  bottom: 2px;
 }
 
 .sec h2 {
@@ -360,15 +376,18 @@ section:before {
   background: #063041;
 }
 
-.carousel .glider-contain .btns button {
-  border: none;
-  outline: none;
+.carousel .glider-contain .glider-prev, .carousel .glider-contain .glider-next {
   color: #fff;
-  font-size: 1.5em;
-  -webkit-transition: .2s ease background;
-  transition: .2s ease background;
+  top: calc(50% - 40px);
   cursor: pointer;
-  z-index: 2000;
+}
+
+.carousel .glider-contain .glider-prev {
+  left: 0;
+}
+
+.carousel .glider-contain .glider-next {
+  right: 0;
 }
 
 @media (max-width: 1200px) {

@@ -198,16 +198,16 @@ section{
         pointer-events: none;
 
     }
-    &:before{
-        content: '';
-        position: absolute;
-        bottom: -20.1vh;
-        left: 0;
-        width: 100%;
-        height: 100px;
-        background: linear-gradient(to top, $first, transparent);
-        z-index: 100000;  
-    }
+    // &:before{
+    //     content: '';
+    //     position: absolute;
+    //     bottom: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100px;
+    //     background: linear-gradient(to top, $first, transparent);
+    //     z-index: 100000;  
+    // }
 }
 
         #bird2{ 
@@ -215,6 +215,26 @@ section{
         }
         #bird1{
             transform: translateX(5%) translateY(-10%); 
+        }
+        .agua{
+        overflow: hidden;
+        width: 100%;
+        height: 20vh;
+        position:relative;
+        &:before{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, $first, transparent);
+            z-index: 100000;  
+        }
+            #water{
+                position: absolute;
+                bottom: -14vh; 
+            } 
         }
 
 #btn{
@@ -237,11 +257,14 @@ section{
 }
 
 .sec{
-    top:20vh;
     width: 100%; 
     position: relative;  
     background: $first;
     padding: 40px 0;
+    bottom:4px;
+    &.first{
+        bottom:2px;
+    }
     h2{
         text-align: center; 
         font-size: 2.5em;
@@ -316,22 +339,22 @@ section{
                         }
                     }
                 }
-                .btns button{
-                    border: none;
-                    outline:none;
-                    // background: rgba(6, 48, 65,.6);
+                .glider-prev,.glider-next{
+                    // background: rgba(6, 48, 65,.6); 
                     color: #fff;
-                    // height: 100px;
-                    // width: 40px;
-                    font-size: 1.5em;
-                    transition: .2s ease background;
+                    top: calc(50% - 40px);
                     cursor:pointer;
-                    z-index:2000; 
                     // &:hover{
                     //     background:rgb(6, 48, 65);
                     //     box-shadow: 2px 2px 10px rgba(0,0,0,.5);
         
                     //  }
+                }
+                .glider-prev{
+                    left: 0;
+                }
+                .glider-next{
+                    right: 0;
                 }
             }
         }
