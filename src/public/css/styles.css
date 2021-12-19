@@ -237,7 +237,7 @@ section img {
   height: 100px;
   background: -webkit-gradient(linear, left bottom, left top, from(#094b65), to(transparent));
   background: linear-gradient(to top, #094b65, transparent);
-  z-index: 100000;
+  z-index: 800;
 }
 
 .agua #water {
