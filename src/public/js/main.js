@@ -60,6 +60,7 @@
         body.style.overflowY = "visible";
         if(navbar.classList.contains('activo')){
           bars.classList.replace('fa-times','fa-bars');
+          bars.style.color = "rgba(9, 75, 101,.8)";
           navbar.classList.remove('activo');
 
         }
