@@ -102,7 +102,7 @@
 
 body {
   overflow-x: hidden;
-  background: #fff;
+  background: #094b65;
   min-height: 100vh;
 }
 
@@ -251,7 +251,7 @@ body {
   color: rgba(9, 75, 101, 0.8);
   -webkit-transition: .2s color ease;
   transition: .2s color ease;
-  z-index: 200000;
+  z-index: 1200;
   cursor: pointer;
 }
 
@@ -477,6 +477,123 @@ section img {
 
 .carousel .glider-contain .glider-next {
   right: 0;
+}
+
+.motivo-oracion {
+  z-index: 1300;
+  width: 100%;
+  height: 100vh;
+  background: #094b65;
+  color: #fff;
+  position: absolute;
+  padding: 40px 20px;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: .5s transform ease;
+  transition: .5s transform ease;
+}
+
+.motivo-oracion.activo {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.motivo-oracion .formulario-oracion {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.motivo-oracion .formulario-oracion h3 {
+  font-size: 1.8em;
+  text-shadow: 4px 6px rgba(0, 0, 0, 0.5);
+  margin: 30px 0;
+  text-transform: uppercase;
+}
+
+.motivo-oracion .formulario-oracion input, .motivo-oracion .formulario-oracion textarea {
+  width: 100%;
+  padding: 20px 40px;
+  background-color: #052a38;
+  border: none;
+  outline: none;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+  font-size: 1.3em;
+  color: #fff;
+}
+
+.motivo-oracion .formulario-oracion input:focus, .motivo-oracion .formulario-oracion textarea:focus {
+  border-bottom: 3px solid #fff;
+}
+
+.motivo-oracion .formulario-oracion input {
+  border-radius: 5px 5px 0 0;
+}
+
+.motivo-oracion .formulario-oracion button {
+  padding: 8px 30px;
+  background: #fff;
+  color: #094b65;
+  font-size: 1.3em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border-radius: 40px;
+  -webkit-transition: .2s letter-spacing ease;
+  transition: .2s letter-spacing ease;
+  border: none;
+  outline: none;
+  margin-top: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: 'Poppins',sans-serif;
+}
+
+.motivo-oracion .formulario-oracion button:hover {
+  letter-spacing: 4px;
+}
+
+.btn-oracion {
+  position: fixed;
+  z-index: 10000;
+  bottom: 20px;
+  right: 10px;
+}
+
+.btn-oracion button {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.1em;
+  border: none;
+  outline: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(9, 75, 101, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+  -webkit-box-shadow: -1px 1px 3px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: -1px 1px 3px 2px rgba(0, 0, 0, 0.5);
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.btn-oracion button:hover {
+  background: #094b65;
+  color: #fff;
 }
 
 @media (max-width: 1200px) {

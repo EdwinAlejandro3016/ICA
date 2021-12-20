@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Rancho&display=swap');
 
 $rojo : #e63946;
-$first: #094b65;
-$darkFirst:#052a38;
+$first: rgb(9, 75, 101);
+$darkFirst:rgb(5, 42, 56);
     
 
 @mixin center { 
@@ -21,7 +21,7 @@ $darkFirst:#052a38;
 
 body{
     overflow-x: hidden;
-    background: #fff;
+    background: $first;
     min-height: 100vh;
 }
 
@@ -50,7 +50,7 @@ body{
             filter: invert(12%) sepia(99%) saturate(415%) hue-rotate(150deg) brightness(91%) contrast(100%);
             // filter: invert(23%) sepia(13%) saturate(5215%) hue-rotate(163deg) brightness(90%) contrast(93%);
             // hsl(197, 83%, 12%); 
-        }
+        } 
     }
     .navigation{ 
         @include center();
@@ -160,7 +160,7 @@ body{
     font-size: 1.7em;
     color: rgba(9,75,101,.8);   
     transition: .2s color ease;
-    z-index: 200000;
+    z-index: 1200;
     cursor: pointer;
     &:hover{
         color: $first; 
@@ -362,6 +362,98 @@ section{
                 .glider-next{
                     right: 0;
                 }
+            }
+        }
+
+
+        // motivo de oracion
+        .motivo-oracion{
+            z-index:1300;
+            width: 100%;
+            height: 100vh;
+            background: $first;
+            color: #fff;
+            position: absolute; 
+            padding: 40px 20px; 
+            top: 0;
+            left:0;
+            transform: translateY(-100%);
+            transition: .5s transform ease;
+            &.activo{
+                transform: translateY(0);     
+            }
+            .formulario-oracion{
+                width: 100%;
+                height: 100%;
+                 @include center();
+                 text-align: center;
+                 flex-direction: column;
+                h3{
+                    font-size: 1.8em;
+                    text-shadow: 4px 6px rgba(0,0,0,.5);
+                    margin: 30px 0;
+                    text-transform: uppercase;
+                }
+                input,textarea{
+                    width: 100%;
+                    padding: 20px 40px;
+                    background-color: $darkFirst;
+                    border: none; 
+                    outline: none;
+                    border-bottom: 3px solid rgba(255,255,255,.5);
+                    font-size: 1.3em;
+                    color: #fff;
+                    &:focus{
+                        border-bottom: 3px solid #fff;
+                    }
+                }
+                input{
+                    border-radius: 5px 5px 0 0;
+                }
+                button{
+                    padding: 8px 30px;
+                    background: #fff;
+                    color: $first;
+                    font-size: 1.3em;
+                    font-weight: 600;
+                    letter-spacing: 2px; 
+                    border-radius: 40px;
+                    transition: .2s letter-spacing ease;
+                    border: none;
+                    outline: none;
+                    margin-top: 20px;
+                    cursor: pointer;
+                    text-transform: uppercase;
+                    font-family: 'Poppins',sans-serif;
+                    &:hover{
+                        letter-spacing: 4px;
+                    }
+                }
+
+            }
+        }
+        .btn-oracion{
+            position: fixed;
+            z-index: 10000;
+            bottom: 20px;
+            right: 10px;
+            button{
+                display: inline-block;
+                cursor:pointer;
+                font-size: 1.1em;
+                border: none;
+                outline: none;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%; 
+                background: rgba(9, 75, 101,.8);
+                color: rgba(255,255,255,.8);   
+                box-shadow: -1px 1px 3px 2px rgba(0,0,0,.5); 
+                transition: .3s;
+                &:hover{
+                    background: $first;
+                    color: #fff;          
+                 }
             }
         }
 

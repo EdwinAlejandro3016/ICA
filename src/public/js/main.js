@@ -17,6 +17,9 @@
     const navbar = document.querySelector('.nav-responsive');
     const btnSalir = document.getElementById('salir');
     const body = document.getElementsByTagName('body')[0];
+    const btnOracion = document.getElementById('btn-oracion');
+    const motivoOracion = document.querySelector('.motivo-oracion');
+
 
     window.addEventListener('scroll',()=>{
         header.classList.toggle('sticky', window.scrollY > 0);
@@ -40,6 +43,28 @@
           body.style.overflowY = "visible";
         }
     });
+
+    //motivo de oracion
+    btnOracion.addEventListener('click',()=>{
+      motivoOracion.classList.toggle('activo');
+
+      if( motivoOracion.classList.contains('activo')){
+        // btnOracion.style.color = '#fff';
+        btnOracion.children[0].children[0].classList.replace('fa-edit','fa-times'); 
+        body.style.overflowY = "hidden";
+        // motivoOracion.style.transform = `translateY(${body.scrollY}px)`;
+
+      }else{
+        // btnOracion.style.color = "rgba(9, 75, 101,.8)";
+        btnOracion.children[0].children[0].classList.replace('fa-times','fa-edit');  
+        body.style.overflowY = "visible";
+        if(navbar.classList.contains('activo')){
+          bars.classList.replace('fa-times','fa-bars');
+          navbar.classList.remove('activo');
+
+        }
+      }
+  });
     //carousel
     window.addEventListener('load',function(){
         new Glider(document.querySelector('.glider'),{
