@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Rancho&display=swap');
 
 $rojo : #e63946;
-$first: rgb(9, 75, 101);
+$first: #094b65;
+$darkFirst:#052a38;
+    
 
-@mixin center {
+@mixin center { 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+@import '__Footer.scss';
 *{
     margin: 0;
     padding: 0;
@@ -23,14 +26,14 @@ body{
 }
 
 // navbar
-
-#header{ 
-    position: fixed;
+ 
+#header{  
+    position: fixed; 
     background: #fff; 
     top: 0;
     left: 0;
     width: 100%;
-    padding: 30px 100px;
+    padding: 20px 100px;
     display: flex; 
     justify-content: space-between;
     align-items: center;
@@ -41,10 +44,13 @@ body{
         box-shadow: 0 5px 20px rgba(0,0,0,.05);
     }
     .logo{
-        color: $first;
-        font-weight: 700; 
-        font-size: 1.8em;
-        text-decoration: none;
+        img{
+            width: 250px; 
+            object-fit: contain; 
+            filter: invert(12%) sepia(99%) saturate(415%) hue-rotate(150deg) brightness(91%) contrast(100%);
+            // filter: invert(23%) sepia(13%) saturate(5215%) hue-rotate(163deg) brightness(90%) contrast(93%);
+            // hsl(197, 83%, 12%); 
+        }
     }
     .navigation{ 
         @include center();
@@ -261,10 +267,10 @@ section{
     position: relative;  
     background: $first;
     padding: 40px 0;
-    bottom:4px;
-    &.first{
-        bottom:2px;
-    }
+    // bottom:4px;
+    // &.first{
+    //     bottom:2px;
+    // }
     h2{
         text-align: center; 
         font-size: 2.5em;
@@ -331,10 +337,10 @@ section{
                         width: 30px;
                         background: rgba(6, 48, 65,.6); 
                         &:hover{ 
-                             background:rgb(6, 48, 65);
+                             background:$darkFirst;
                         }
                         &.active{
-                            background:rgb(6, 48, 65);
+                            background:$darkFirst;
 
                         }
                     }
@@ -373,12 +379,12 @@ section{
 }
 @media (max-width: 800px){
     #header{
-        padding: 30px 50px;
+        padding: 20px 50px;
         .logo{
             font-size: 1.5em; 
         }
         &.sticky{
-            padding: 20px 50px;
+            padding: 15px 50px;
         }
     }
     .sec h2{
@@ -416,11 +422,11 @@ section{
 @media (max-width: 480px){
 
     #header{
-        padding: 30px 10px;
+        padding: 20px 10px;
         &.sticky{
             padding: 15px 10px;
-        }
-    }
+        } 
+    } 
     #btn{
         bottom: 23vh;
         padding: 4px 15px;
@@ -438,4 +444,4 @@ section{
     .carousel .glaider-contain{
         width: 100%;
     }
-}
+}   

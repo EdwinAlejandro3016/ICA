@@ -1,4 +1,97 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Rancho&display=swap");
+.pie-pagina {
+  width: 100%;
+  background: #052a38;
+}
+
+.pie-pagina .grupo-2 {
+  background: #031922;
+  padding: 15px 10px;
+  text-align: center;
+  color: #fff;
+}
+
+.pie-pagina .grupo-2 small {
+  font-size: 15px;
+}
+
+.pie-pagina .grupo-1 {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
+  padding: 45px 0;
+}
+
+.pie-pagina .grupo-1 .box figure {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pie-pagina .grupo-1 .box figure img {
+  width: 250px;
+  -webkit-filter: invert(1);
+          filter: invert(1);
+}
+
+.pie-pagina .grupo-1 .box h2 {
+  margin-bottom: 25px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.pie-pagina .grupo-1 .box p {
+  color: #efefef;
+  margin-bottom: 10px;
+}
+
+.pie-pagina .grupo-1 .box .red-social a {
+  display: inline-block;
+  text-decoration: none;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  color: #fff;
+  margin-right: 10px;
+  background-color: rgba(3, 25, 34, 0.6);
+  text-align: center;
+  -webkit-transition: all .3 ease;
+  transition: all .3 ease;
+}
+
+.pie-pagina .grupo-1 .box .red-social a:hover {
+  background-color: #031922;
+}
+
+@media screen and (max-width: 800px) {
+  .pie-pagina .grupo-1 {
+    width: 90%;
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+    grid-gap: 30px;
+    padding: 35px 0;
+  }
+  .pie-pagina .grupo-1 .box figure img {
+    width: 250px;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,7 +112,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 30px 100px;
+  padding: 20px 100px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -40,11 +133,12 @@ body {
           box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
-#header .logo {
-  color: #094b65;
-  font-weight: 700;
-  font-size: 1.8em;
-  text-decoration: none;
+#header .logo img {
+  width: 250px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -webkit-filter: invert(12%) sepia(99%) saturate(415%) hue-rotate(150deg) brightness(91%) contrast(100%);
+          filter: invert(12%) sepia(99%) saturate(415%) hue-rotate(150deg) brightness(91%) contrast(100%);
 }
 
 #header .navigation {
@@ -272,11 +366,6 @@ section img {
   position: relative;
   background: #094b65;
   padding: 40px 0;
-  bottom: 4px;
-}
-
-.sec.first {
-  bottom: 2px;
 }
 
 .sec h2 {
@@ -369,11 +458,11 @@ section img {
 }
 
 .carousel .glider-contain .dots .glider-dot:hover {
-  background: #063041;
+  background: #052a38;
 }
 
 .carousel .glider-contain .dots .glider-dot.active {
-  background: #063041;
+  background: #052a38;
 }
 
 .carousel .glider-contain .glider-prev, .carousel .glider-contain .glider-next {
@@ -401,13 +490,13 @@ section img {
 
 @media (max-width: 800px) {
   #header {
-    padding: 30px 50px;
+    padding: 20px 50px;
   }
   #header .logo {
     font-size: 1.5em;
   }
   #header.sticky {
-    padding: 20px 50px;
+    padding: 15px 50px;
   }
   .sec h2 {
     font-size: 1.8em;
@@ -446,7 +535,7 @@ section img {
 
 @media (max-width: 480px) {
   #header {
-    padding: 30px 10px;
+    padding: 20px 10px;
   }
   #header.sticky {
     padding: 15px 10px;

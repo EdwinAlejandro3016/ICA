@@ -35,7 +35,8 @@
 
         }else{
           bars.style.color = "rgba(9, 75, 101,.8)";
-          bars.classList.replace('fa-times','fa-bars');  
+          bars.classList.replace('fa-times','fa-bars')
+          ;  
           body.style.overflowY = "visible";
         }
     });
