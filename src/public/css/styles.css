@@ -112,7 +112,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 100px;
+  padding: 13px 100px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -130,7 +130,7 @@ body {
 }
 
 #header.sticky {
-  padding: 20px 100px;
+  padding: 8px 100px;
 }
 
 #header .logo img {
@@ -577,6 +577,10 @@ section img {
   right: 10px;
 }
 
+.btn-oracion.logout {
+  bottom: 90px;
+}
+
 .btn-oracion button {
   display: inline-block;
   cursor: pointer;
@@ -610,13 +614,13 @@ section img {
 
 @media (max-width: 800px) {
   #header {
-    padding: 20px 50px;
+    padding: 13px 50px;
   }
   #header .logo {
     font-size: 1.5em;
   }
   #header.sticky {
-    padding: 15px 50px;
+    padding: 8px 50px;
   }
   .sec h2 {
     font-size: 1.8em;
@@ -655,10 +659,10 @@ section img {
 
 @media (max-width: 480px) {
   #header {
-    padding: 20px 10px;
+    padding: 13px 10px;
   }
   #header.sticky {
-    padding: 15px 10px;
+    padding: 8px 10px;
   }
   #btn {
     bottom: 23vh;

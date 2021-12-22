@@ -33,7 +33,7 @@ body{
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px 100px;
+    padding: 13px 100px;
     display: flex; 
     justify-content: space-between;
     align-items: center;
@@ -41,7 +41,7 @@ body{
     transition: .5s; 
     box-shadow: 0 5px 20px rgba(0,0,0,.05); 
     &.sticky{
-        padding: 20px 100px;
+        padding: 8px 100px;
         
     }
     .logo{
@@ -410,6 +410,7 @@ section{
                         border-bottom: 3px solid #fff;
                     }
                 }
+                
                 input{
                     border-radius: 5px 5px 0 0;
                 }
@@ -436,11 +437,15 @@ section{
 
             }
         }
-        .btn-oracion{
+
+.btn-oracion{
             position: fixed;
             z-index: 10000;
             bottom: 20px;
             right: 10px;
+            &.logout{
+                bottom: 90px; 
+            }
             button{
                 display: inline-block;
                 cursor:pointer;
@@ -475,12 +480,12 @@ section{
 }
 @media (max-width: 800px){
     #header{
-        padding: 20px 50px;
+        padding: 13px 50px;
         .logo{
             font-size: 1.5em; 
         }
         &.sticky{
-            padding: 15px 50px;
+            padding: 8px 50px;
         }
     }
     .sec h2{
@@ -518,9 +523,9 @@ section{
 @media (max-width: 480px){
 
     #header{
-        padding: 20px 10px;
+        padding: 13px 10px;
         &.sticky{
-            padding: 15px 10px;
+            padding: 8px 10px;
         } 
     } 
     #btn{
