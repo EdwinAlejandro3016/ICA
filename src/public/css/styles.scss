@@ -240,7 +240,7 @@ section{
     width: 100%; 
     position: relative;  
     background: $first;
-    padding: 40px 0;
+    padding: 40px 20px;
     // bottom:4px;
     // &.first{
     //     bottom:2px;
@@ -302,12 +302,13 @@ section{
         .carousel{
             width: 100%;
             .glider-contain{
-                width: 90%;
+                width: 100%;
                 margin: auto;
                 text-align: center;
                 color: rgba(255,255,255,.8);
                 cursor:pointer;
-                .dots{
+                .dots,
+                .dots-info{ 
                     .glider-dot{
                         height: 4px;
                         border-radius: none; 
@@ -342,6 +343,35 @@ section{
             }
         }
 
+        .info-carousel{
+            width: 100%;
+            p{
+                color: #fff;
+                font-size: 1em; 
+                line-height: 1.5;
+                margin: 20px 0;
+            }
+            .position-info{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: center;
+
+                #cerrar-info{
+                    background-color: $darkFirst;
+                    padding: 10px;
+                    border-radius: 50%;
+                    font-size: 1.7em;
+                    color: #fff; 
+                    transition: .2s color ease;
+                    cursor: pointer;
+                    &:hover{
+                        color: rgba(255,255,255,.8);
+                    }
+                }
+            }
+        }
 
         // motivo de oracion
         .motivo-oracion{

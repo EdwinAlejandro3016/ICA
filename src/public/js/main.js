@@ -17,7 +17,7 @@
     // const carousel = document.getElementById('carousel');
     const carousel = document.querySelector('.carousel');
     const tituloMinisterio = document.getElementById('ministerio');
-    const elemCarousel = document.querySelectorAll('.carousel__elemento img');
+    const elemCarousel = document.querySelectorAll('.ministerios .carousel__elemento img');
 
 
     //bars
@@ -100,14 +100,44 @@
 
 
     //carousel
+    const btnLeft = document.getElementById('btn-left-carousel');
+    const btnRight = document.getElementById('btn-right-carousel');
+    const tituloInfoCarousel = document.getElementById('titulo-info-carousel');
+    const btnCerrarInfo = document.getElementById('cerrar-info');
+
+    function slideInfo(e,close){   
+      if(close){
+        $('.info-carousel').slideUp();
+      }else{
+        tituloInfoCarousel.textContent = e.target.dataset.ministerio;
+        e.preventDefault();
+        $('.info-carousel').slideDown();
+      }
+
+    }
+    btnCerrarInfo.addEventListener('click',(e)=>{
+        slideInfo(e,true);
+    })
 
     if(window.screen.width < 450){
       tituloMinisterio.textContent = elemCarousel[0].dataset.ministerio;
+    }else{
+      btnLeft.addEventListener('click',(e)=>{
+        tituloMinisterio.textContent = 'MINISTERIOS';
+      })
+      btnRight.addEventListener('click',(e)=>{
+        tituloMinisterio.textContent = 'MINISTERIOS';
+      })
+      
     }
+    console.log(elemCarousel);
+    elemCarousel.forEach((elem)=>{
+      elem.addEventListener('click',(e)=>{
+          slideInfo(e,false);
+      })
+    })
 
     carousel.addEventListener('mouseover',(e)=>{
-      const btnLeft = document.getElementById('btn-left-carousel');
-      const btnRight = document.getElementById('btn-right-carousel');
       let targetActual = e.target;
       let contador = 1;
       if(window.screen.width < 450){
@@ -143,8 +173,8 @@
       tituloMinisterio.textContent = 'Ministerios';
     });
 
-    window.addEventListener('load',function(){
-        new Glider(document.querySelector('.glider'),{
+    window.addEventListener('load',async function(){
+       await new Glider(document.querySelector('.glider'),{
             slidesToShow: 1,
             slidesToScroll: 1,
             dots: '.dots',
@@ -167,6 +197,38 @@
                   }
               ]
         });
+       await new Glider(document.getElementById('carousel-info'),{
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: '.dots-info',
+          arrows: {
+            prev: '.glider-prev-info',
+            next: '.glider-next-info'
+          },responsive: [
+              {
+                breakpoint: 450, 
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2,
+                }
+              },{
+                  breakpoint: 1024, 
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                  }
+                }
+            ]
+      });
+      $('.info-carousel').hide();
+
+      // $('.slide-carousel-info').click(slideInfo(e,'yo'));
     })
 
-  
+
+
+
+
+
+
+
