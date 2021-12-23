@@ -194,8 +194,8 @@
        await new Glider(document.querySelector('.glider'),{
             slidesToShow: 1,
             slidesToScroll: 1,
+            draggable: false,
             dots: '.dots',
-            scrollLock: true,
             arrows: {
               prev: '.glider-prev',
               next: '.glider-next'
@@ -217,9 +217,9 @@
         });
        await new Glider(document.getElementById('carousel-info'),{
           slidesToShow: 1,
+          draggable:false,
           slidesToScroll: 1,
           dots: '.dots-info',
-          scrollLock: true, 
           arrows: {
             prev: '.glider-prev-info',
             next: '.glider-next-info'

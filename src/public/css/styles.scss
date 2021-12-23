@@ -217,7 +217,7 @@ section{
             } 
         }
 
-#btn{
+.btn-comun{
     position:absolute;
     bottom: 20vh; 
     text-decoration: none; 
@@ -236,6 +236,24 @@ section{
     }
 }
 
+.info{
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    a{
+        text-decoration: none; 
+        display: inline-block;
+        padding: 4px 15px;
+        background: #fff;
+        color: $first;
+        font-size: 1em;
+        font-weight: 500;
+        letter-spacing: 1px;
+        border-radius: 40px;
+        pointer-events: none;
+    }
+
+}
 .sec{
     width: 100%; 
     position: relative;  
