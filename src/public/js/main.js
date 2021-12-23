@@ -195,6 +195,7 @@
             slidesToShow: 1,
             slidesToScroll: 1,
             dots: '.dots',
+            scrollLock: true,
             arrows: {
               prev: '.glider-prev',
               next: '.glider-next'
@@ -218,6 +219,7 @@
           slidesToShow: 1,
           slidesToScroll: 1,
           dots: '.dots-info',
+          scrollLock: true, 
           arrows: {
             prev: '.glider-prev-info',
             next: '.glider-next-info'
