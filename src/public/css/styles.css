@@ -155,24 +155,24 @@ body {
   transition: .5s;
 }
 
-#header .navigation li {
-  text-align: center;
-  list-style: none;
-  margin-left: 20px;
-}
-
-#header .navigation li a {
+#header .navigation a {
   text-decoration: none;
   padding: 6px 15px;
   border-radius: 20px;
   color: #094b65;
   -webkit-transition: .2s background ease;
   transition: .2s background ease;
+  margin-left: 20px;
+  text-align: center;
 }
 
-#header .navigation li a:hover, #header .navigation li a.activo {
+#header .navigation a:hover, #header .navigation a.activo {
   background-color: #094b65;
   color: #fff;
+}
+
+#header .navigation a li {
+  list-style: none;
 }
 
 .nav-responsive {
@@ -213,7 +213,14 @@ body {
   width: 100%;
 }
 
-.nav-responsive ul li {
+.nav-responsive ul a {
+  text-decoration: none;
+  font-size: 1.3em;
+  font-weight: 500;
+  color: #fff;
+}
+
+.nav-responsive ul a li {
   list-style: none;
   padding: 30px 0;
   width: 100%;
@@ -222,15 +229,8 @@ body {
   transition: .2s ease background;
 }
 
-.nav-responsive ul li:hover {
+.nav-responsive ul a li:hover {
   background: #094b65;
-}
-
-.nav-responsive ul li a {
-  text-decoration: none;
-  font-size: 1.3em;
-  font-weight: 500;
-  color: #fff;
 }
 
 .icono {
@@ -370,6 +370,9 @@ section img {
 }
 
 .sec h2 {
+  text-transform: uppercase;
+  -webkit-transition: .3s all ease;
+  transition: .3s all ease;
   text-align: center;
   font-size: 2.5em;
   color: #fff;
@@ -449,6 +452,7 @@ section img {
   margin: auto;
   text-align: center;
   color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
 }
 
 .carousel .glider-contain .dots .glider-dot {

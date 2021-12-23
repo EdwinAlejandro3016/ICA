@@ -56,52 +56,23 @@ body{
     .navigation{ 
         @include center();
         transition: .5s;
-        li{
-            text-align: center;
-            list-style: none;
+        a{ 
+            text-decoration: none;
+            padding: 6px 15px;
+            border-radius: 20px;
+            color: $first;
+            transition: .2s background ease;
             margin-left: 20px;
-            a{ 
-                text-decoration: none;
-                padding: 6px 15px;
-                border-radius: 20px;
-                color: $first;
-                transition: .2s background ease;
-                &:hover,&.activo{
-                    background-color: $first;
-                    color: #fff;
-                }
+            text-align: center;
+            &:hover,&.activo{
+                background-color: $first;
+                color: #fff;
+            }
+            li{
+                list-style: none;
             }
         }
-        // &.activo{
-        //     width: 50%;
-        //     height: 100%; 
-        //     position: fixed;
-        //     top: 0; 
-        //     right: 0;
-        //     flex-direction: column;
-        //     background: rgba($first,.8);
-        //         li{
-        //             list-style: none;
-        //             padding: 30px 0;
-        //             width: 100%;
-        //             margin-left: 0;
-        //             cursor:pointer;
-        //             transition: .2s ease background;
-        //             &:hover{
-        //                 background: $first;
-        //             }
-        //             a{ 
-        //                 text-decoration: none;
-        //                 font-size: 1.3em;
-        //                 font-weight: 500;
-        //                 color: #fff;
-        //                 &.activo{
-        //                     background: none;
-        //                 }
-        //             }
-        //         }
-            
-        // }
+
     }
 }
 
@@ -127,21 +98,22 @@ body{
     }
     ul{
         width: 100%;
-        li{
-            list-style: none;
-            padding: 30px 0;
-            width: 100%;
-            cursor:pointer;
-            transition: .2s ease background;
-            &:hover{
-                background: $first;
+        a{ 
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: 500;
+            color: #fff;
+            li{
+                list-style: none;
+                padding: 30px 0;
+                width: 100%;
+                cursor:pointer;
+                transition: .2s ease background;
+                &:hover{
+                    background: $first;
+                }
             }
-            a{ 
-                text-decoration: none;
-                font-size: 1.3em;
-                font-weight: 500;
-                color: #fff;
-            }
+            
         }
     }
 }
@@ -274,6 +246,8 @@ section{
     //     bottom:2px;
     // }
     h2{
+        text-transform: uppercase;
+        transition: .3s all ease; 
         text-align: center; 
         font-size: 2.5em;
         color: #fff; 
@@ -332,6 +306,7 @@ section{
                 margin: auto;
                 text-align: center;
                 color: rgba(255,255,255,.8);
+                cursor:pointer;
                 .dots{
                     .glider-dot{
                         height: 4px;

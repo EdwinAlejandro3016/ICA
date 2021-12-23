@@ -2,20 +2,18 @@
 <header id="header">
     <a href="#" class="logo"><img src="/img/logo-ica.png" alt="ICA PENTECOSTES"></a>
     <ul class="navigation">
-        <li><a href="/" class="activo">Inicio</a></li>
-        <li><a href="/ministerios">Ministerios</a></li>
-        <li><a href="/adoradores">Adoradores</a></li>
-        <li><a href="/obras">Obras</a></li>
+        <a href="#inicio" class="activo"><li>Inicio</li></a>
+        <a href="#versiculo"><li>Versículo</li></a>
+        <a href="#ministerios"><li>Ministerios</li></a>
     </ul>
     <i class="fas fa-bars icono" id="bars"></i>
 
     <div class="nav-responsive"> 
         {{!-- <i class="fa fa-times icono" id="salir"></i> --}}
-        <ul>
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/ministerios">Ministerios</a></li>
-                <li><a href="/adoradores">Adoradores</a></li>
-                <li><a href="/obras">Obras</a></li>
+        <ul class="items-nav">
+            <a href="#inicio" class="activo"><li>Inicio</li></a> 
+            <a href="#versiculo"><li>Versículo Diario</li></a>
+            <a href="#ministerios"><li>Ministerios</li></a>
         </ul>
     </div>
     {{> form-oracion}}
