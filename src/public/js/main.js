@@ -17,6 +17,8 @@
     // const carousel = document.getElementById('carousel');
     const carousel = document.querySelector('.carousel');
     const tituloMinisterio = document.getElementById('ministerio');
+    const elemCarousel = document.querySelectorAll('.carousel__elemento img');
+
 
     //bars
     const bars = document.getElementById('bars');
@@ -95,20 +97,51 @@
         }
       }
   });
+
+
     //carousel
+
+    if(window.screen.width < 450){
+      tituloMinisterio.textContent = elemCarousel[0].dataset.ministerio;
+    }
+
     carousel.addEventListener('mouseover',(e)=>{
-      if(e.target.dataset.ministerio === undefined){
-        return false;
+      const btnLeft = document.getElementById('btn-left-carousel');
+      const btnRight = document.getElementById('btn-right-carousel');
+      let targetActual = e.target;
+      let contador = 1;
+      if(window.screen.width < 450){
+        btnLeft.addEventListener('click',(e)=>{
+          if(contador === 1){
+
+          }else{
+            contador--;
+            tituloMinisterio.textContent = elemCarousel[contador - 1].dataset.ministerio;
+          }
+        })
+  
+        btnRight.addEventListener('click',(e)=>{
+          if(contador === elemCarousel.length){
+
+          }else{
+            contador++;
+            console.log(elemCarousel[contador - 1]);
+            tituloMinisterio.textContent = elemCarousel[contador - 1].dataset.ministerio;
+          }
+        })
       }else{
-        let parrafo = e.target.dataset.ministerio;
-        tituloMinisterio.textContent = parrafo;
-      }
+        if(e.target.dataset.ministerio === undefined){
+          return false;
+        }else{
+          let parrafo = e.target.dataset.ministerio;
+          tituloMinisterio.textContent = parrafo;
+        }
+      }    
     });
 
     carousel.addEventListener('mouseleave',(e)=>{
       tituloMinisterio.textContent = 'Ministerios';
     });
-
 
     window.addEventListener('load',function(){
         new Glider(document.querySelector('.glider'),{
