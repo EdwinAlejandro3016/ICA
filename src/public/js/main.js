@@ -121,15 +121,52 @@
 
     if(window.screen.width < 450){
       tituloMinisterio.textContent = elemCarousel[0].dataset.ministerio;
-    }else{
+      
       btnLeft.addEventListener('click',(e)=>{
+        if(contadorCarousel === 1){ 
+
+        }else{
+          contadorCarousel--;
+          tituloMinisterio.textContent = elemCarousel[contadorCarousel - 1].dataset.ministerio;
+        }
+        console.log(contadorCarousel);
+        return false;
+      })
+
+      btnRight.addEventListener('click',(e)=>{
+        if(contadorCarousel === elemCarousel.length){
+
+        }else{
+          contadorCarousel++;
+          tituloMinisterio.textContent = elemCarousel[contadorCarousel - 1].dataset.ministerio;
+        }
+        console.log(contadorCarousel);
+        return false;
+      })
+      ///////
+    }
+    else{
+      btnLeft.addEventListener('click',(e)=>{
+        console.log("ok");
         tituloMinisterio.textContent = 'MINISTERIOS';
       })
       btnRight.addEventListener('click',(e)=>{
+
+        console.log("ok");
+
         tituloMinisterio.textContent = 'MINISTERIOS';
       })
-      
+
     }
+
+    carousel.addEventListener('mouseleave',(e)=>{
+      if(window.screen.width > 450){
+        console.log('mouseleave');
+        tituloMinisterio.textContent = 'Ministerios';
+      }
+
+    });
+
     console.log(elemCarousel);
     elemCarousel.forEach((elem)=>{
       elem.addEventListener('click',(e)=>{
@@ -137,41 +174,21 @@
       })
     })
 
+    let contadorCarousel = 1;
+
     carousel.addEventListener('mouseover',(e)=>{
       let targetActual = e.target;
-      let contador = 1;
-      if(window.screen.width < 450){
-        btnLeft.addEventListener('click',(e)=>{
-          if(contador === 1){
 
-          }else{
-            contador--;
-            tituloMinisterio.textContent = elemCarousel[contador - 1].dataset.ministerio;
-          }
-        })
-  
-        btnRight.addEventListener('click',(e)=>{
-          if(contador === elemCarousel.length){
-
-          }else{
-            contador++;
-            console.log(elemCarousel[contador - 1]);
-            tituloMinisterio.textContent = elemCarousel[contador - 1].dataset.ministerio;
-          }
-        })
-      }else{
         if(e.target.dataset.ministerio === undefined){
           return false;
         }else{
           let parrafo = e.target.dataset.ministerio;
           tituloMinisterio.textContent = parrafo;
         }
-      }    
+        
     });
 
-    carousel.addEventListener('mouseleave',(e)=>{
-      tituloMinisterio.textContent = 'Ministerios';
-    });
+
 
     window.addEventListener('load',async function(){
        await new Glider(document.querySelector('.glider'),{
