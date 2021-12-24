@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Rancho&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 .pie-pagina {
   width: 100%;
   background: #052a38;
@@ -92,12 +100,84 @@
   }
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+.form-agregar-ministerio {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.form-agregar-ministerio .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.form-agregar-ministerio .form.login {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-agregar-ministerio .form.login input[type='submit'] {
+  background: #0c813d;
+  border-bottom: none;
+  border-radius: 0 0 5px 5px;
+  cursor: pointer;
+}
+
+.form-agregar-ministerio .form.login input[type='submit']:hover {
+  background-color: rgba(12, 129, 61, 0.8);
+}
+
+.form-agregar-ministerio .form.login input:nth-child(2) {
+  border-bottom: none;
+}
+
+.form-agregar-ministerio .form input, .form-agregar-ministerio .form textarea {
+  display: block;
+  width: 100%;
+  padding: 15px 20px;
+  background: #052a38;
+  border: none;
+  outline: none;
+  border-bottom: 2px #fff solid;
+  max-width: 600px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+  font-size: 1.3em;
+  color: #fff;
+}
+
+.form-agregar-ministerio .form input:focus, .form-agregar-ministerio .form textarea:focus {
+  border-bottom: 3px solid #fff;
+}
+
+.form-agregar-ministerio .form input[type="file"] {
+  border-bottom: none;
+}
+
+.form-agregar-ministerio .form button {
+  display: block;
+  padding: 6px 15px;
+  background: #0c813d;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 0 0 5px 5px;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  max-width: 600px;
 }
 
 body {
@@ -372,13 +452,27 @@ section img {
   text-decoration: none;
   display: inline-block;
   padding: 4px 15px;
-  background: #fff;
-  color: #094b65;
+  color: #fff;
   font-size: 1em;
   font-weight: 500;
   letter-spacing: 1px;
   border-radius: 40px;
   pointer-events: none;
+}
+
+.info.oculto button {
+  display: inline-block;
+  padding: 4px 15px;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 40px;
+  pointer-events: visible;
+  background: #0c813d;
+  color: #fff;
+  border: none;
+  outline: none;
 }
 
 .sec {

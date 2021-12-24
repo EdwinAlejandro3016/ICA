@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Rancho&display=swap');
 
-$rojo : #e63946;
+$eliminar : #e63946;
 $first: rgb(9, 75, 101);
 $darkFirst:rgb(5, 42, 56);
+$crear:rgb(12, 129, 61);
     
 
 @mixin center { 
@@ -11,13 +12,16 @@ $darkFirst:rgb(5, 42, 56);
     align-items: center;
 }
 
-@import '__Footer.scss';
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
+@import '__Footer.scss';
+@import '__CrearMinisterio.scss';
+
 
 body{
     overflow-x: hidden;
@@ -244,13 +248,29 @@ section{
         text-decoration: none; 
         display: inline-block;
         padding: 4px 15px;
-        background: #fff;
-        color: $first;
+        color: #fff;
         font-size: 1em;
         font-weight: 500;
         letter-spacing: 1px;
         border-radius: 40px;
         pointer-events: none;
+
+    }
+    &.oculto{
+        button{
+            display: inline-block;
+            padding: 4px 15px;
+            color: #fff;
+            font-size: 1em;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-radius: 40px;
+            pointer-events:visible;
+            background: $crear;
+            color: #fff;
+            border: none;
+            outline: none;
+        }
     }
 
 }

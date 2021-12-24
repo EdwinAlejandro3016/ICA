@@ -31,9 +31,12 @@
 </div>
 
     <div class="info">
-        <a href="#ministerios">Click en la Imágen para ver más</a>
+        <a href="#ministerios" id="">Click en la Imágen para ver más</a>
     </div>
-   
+
+    {{#if user}}
+        {{> formCrear}}
+    {{/if}}
 
 <div class="info-carousel sec">
     <div class="position-info">

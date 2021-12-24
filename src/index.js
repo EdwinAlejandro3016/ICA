@@ -15,9 +15,9 @@ require('./config/passport');
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.yzk7a.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`;
-// mongoose.connect(uri)
-// .then(()=>{console.log("database connected!")}) 
-// .catch(e=>console.log(e));
+mongoose.connect(uri)
+.then(()=>{console.log("database connected!")}) 
+.catch(e=>console.log(e));
 
 // settings
 app.set('views',path.join(__dirname,'views'));

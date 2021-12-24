@@ -1,0 +1,62 @@
+.form-agregar-ministerio{
+    width: 100%;
+    margin-top: 20px;
+    .form{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        &.login{
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            input[type='submit']{
+            background: $crear;
+            border-bottom: none;
+            border-radius: 0 0 5px 5px;
+                cursor: pointer;
+                &:hover{
+                    background-color: rgba($crear,.8);
+                }
+            }
+            input:nth-child(2){
+                border-bottom: none;
+            }
+        }
+        width: 100%;
+        input,textarea{
+            display:block;
+            width: 100%;
+            padding: 15px 20px;
+            background: $darkFirst;
+            border: none;
+            outline: none;
+            border-bottom: 2px #fff solid;
+            max-width: 600px;
+            border-bottom: 3px solid rgba(255,255,255,.5);
+            font-size: 1.3em;
+            color: #fff;
+            &:focus{
+                border-bottom: 3px solid #fff;
+            }
+        }
+        input[type="file"]{
+            border-bottom: none;
+        }
+        button{
+            display: block;
+            padding: 6px 15px;
+            background: $crear;
+            color: #fff;
+            font-size: 1em;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border: none;
+            border-radius: 0 0 5px 5px;
+            cursor: pointer;
+            outline: none;
+            width: 100%;
+            max-width: 600px;
+        }
+    }
+    
+}

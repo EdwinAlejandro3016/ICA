@@ -244,7 +244,22 @@
       // $('.slide-carousel-info').click(slideInfo(e,'yo'));
     })
 
+    // FORMULARIO CREAR MINISTERIO
+    try{
+    document.getElementById('crearMinisterio').addEventListener('submit',(e)=>{
+      e.preventDefault();
+      console.log("ok");
+    })
+      $('.form-agregar-ministerio').hide();
 
+      $('#slideCrearMinisterio').click(function(e){
+        console.log("ok");
+          $('.form-agregar-ministerio').slideToggle();
+      });
+    }catch(e){
+      console.log('no estamos en la cuenta privada');
+    }
+ 
 
 
 
