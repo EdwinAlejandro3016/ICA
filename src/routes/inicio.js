@@ -1,15 +1,10 @@
 const router = require('express').Router();
+const Ministerio = require('../models/ministerio');
 
-router.get('/',(req,res)=>{
-    res.render('inicio');
+router.get('/',async(req,res)=>{
+    const ministerios = await Ministerio.find();
+    res.render('inicio',{ministerios});
 });
 
-router.get('/ministerios',(req,res)=>{
-    res.render('inicio');
-});
-
-router.get('/adoradores',(req,res)=>{
-    res.render('inicio');
-});
 
 module.exports = router;

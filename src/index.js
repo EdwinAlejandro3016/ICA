@@ -7,7 +7,7 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
-
+const multer = require('multer');
 require('dotenv').config();  
 require('./config/passport');
 
@@ -26,12 +26,15 @@ app.engine('.hbs',exhbs.engine({
     handlebars: allowInsecurePrototypeAccess(Handlebars),
     layoutsDir: path.join(app.get('views'),'layouts'),
     partialsDir: path.join(app.get('views'),'partials'),
-    extname: '.hbs'
+    extname: '.hbs',
+    helpers: require('./helpers/helpers')
 }));
 app.set('view engine','.hbs');
 
-// middlewares
-app.use(express.urlencoded({extended: true}));
+
+// middlewares 
+app.use(multer({ dest: path.join(__dirname,'public/img/temp') }).single('image'));
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(session({
     secret: 'mysecret',
@@ -53,6 +56,7 @@ app.use((req,res,next)=>{
 // routes
 app.use('/',require('./routes/inicio'));  
 app.use('/users',require('./routes/users'));
+app.use('/form',require('./routes/formularios'));
 
 //static files
 app.use(express.static(__dirname + '/public'));

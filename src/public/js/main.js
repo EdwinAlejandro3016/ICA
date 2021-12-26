@@ -104,20 +104,62 @@
     const btnRight = document.getElementById('btn-right-carousel');
     const tituloInfoCarousel = document.getElementById('titulo-info-carousel');
     const btnCerrarInfo = document.getElementById('cerrar-info');
+    const parrafoInfo = document.getElementById('parrafo-info-carousel');
 
-    function slideInfo(e,close){   
+    function slideInfo(e,data,close){   
+      const {titulo, info,carpeta,dire} = data;
+      const id = data._id;
+      tituloInfoCarousel.textContent = titulo;
+      parrafoInfo.textContent = info;
+
+        const btnEliminar = document.getElementById('eliminar-ministerio');
+        btnEliminar.addEventListener('click',async()=>{
+          try{
+            const data = await fetch(`/form/ministerio/eliminar/${id}`,{
+              method: 'delete',
+            });
+            const respuesta = await data.json();
+            
+            // para eliminar la carpeta
+            const response = await fetch('/form/ministerio/eliminar',{
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({carpeta,dire})
+            })
+            const ok = await response.json();
+            if(ok){
+              window.location.href = '/';
+
+            }
+
+            ///////
+
+          }catch(e){
+              console.log(e);
+          }
+
+       });
+
+
       if(close){
         $('.info-carousel').slideUp();
       }else{
-        tituloInfoCarousel.textContent = e.target.dataset.ministerio;
         e.preventDefault();
         $('.info-carousel').slideDown();
       }
 
     }
+
+    try{
     btnCerrarInfo.addEventListener('click',(e)=>{
-        slideInfo(e,true);
-    })
+        slideInfo(e,'',true);
+      })
+    }catch(e){
+      console.log("vista bloqueda");
+    }
+
 
     if(window.screen.width < 450){
       tituloMinisterio.textContent = elemCarousel[0].dataset.ministerio;
@@ -147,13 +189,9 @@
     }
     else{
       btnLeft.addEventListener('click',(e)=>{
-        console.log("ok");
         tituloMinisterio.textContent = 'MINISTERIOS';
       })
       btnRight.addEventListener('click',(e)=>{
-
-        console.log("ok");
-
         tituloMinisterio.textContent = 'MINISTERIOS';
       })
 
@@ -161,17 +199,32 @@
 
     carousel.addEventListener('mouseleave',(e)=>{
       if(window.screen.width > 450){
-        console.log('mouseleave');
         tituloMinisterio.textContent = 'Ministerios';
       }
 
     });
 
-    console.log(elemCarousel);
+
     elemCarousel.forEach((elem)=>{
-      elem.addEventListener('click',(e)=>{
-          slideInfo(e,false);
-      })
+      elem.addEventListener('click',async(e)=>{
+
+          const ministerio = e.target.dataset.ministerio;
+          const response = await fetch('/form/ministerio/info',{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({titulo: ministerio})
+          })
+          .then(res=>res.json())
+          .then(data=>{ 
+              return data;
+           })
+          .catch(()=>{console.log('error en la peticion')});
+          slideInfo(e,response,false);
+       });
+
+
     })
 
     let contadorCarousel = 1;
@@ -246,20 +299,17 @@
 
     // FORMULARIO CREAR MINISTERIO
     try{
-    document.getElementById('crearMinisterio').addEventListener('submit',(e)=>{
-      e.preventDefault();
-      console.log("ok");
-    })
+
       $('.form-agregar-ministerio').hide();
 
       $('#slideCrearMinisterio').click(function(e){
-        console.log("ok");
+        e.preventDefault();
           $('.form-agregar-ministerio').slideToggle();
       });
     }catch(e){
       console.log('no estamos en la cuenta privada');
     }
- 
+  
 
 
 

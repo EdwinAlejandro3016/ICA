@@ -1,36 +1,4 @@
 {{#if ministerios}}
- <h2 id="ministerio">Ministerios</h2>
-<div class="carousel">
-<div class="glider-contain">
-  <div class="glider ministerios">
-      {{#each ministerios}}
-            <div class="carousel__elemento">
-                <img src="{{filename}}" alt="{{titulo}}" data-ministerio="{{titulo}}" data-info="{{info}}" class="slide-carousel-info">
-                <p>{{titulo}}</p>
-            </div>
-        {{/each}}
-  </div>
-            <button aria-label="Previous" class="glider-prev" id="btn-left-carousel">
-                    <i class="fas fa-chevron-left"></i>
-            </button>
-            <button aria-label="Next" class="glider-next" id="btn-right-carousel">
-                    <i class="fas fa-chevron-right"></i>
-            </button>
-
-  <div role="tablist" class="dots"></div>
-</div>
-</div>
-
-    <div class="info">
-        <a href="#ministerios" id="">Click en la Imágen para ver más</a>
-    </div>
-{{/if}}
-
-    {{#if user}}
-        {{> formCrear}}
-    {{/if}}
-
-{{#if ministerios}}
 <div class="info-carousel sec">
     <div class="position-info">
         <h2 id="titulo-info-carousel"></h2>
