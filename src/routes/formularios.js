@@ -74,4 +74,18 @@ router.post('/oracion',async(req,res)=>{
     res.redirect('/');
 
 })
+
+router.delete('/oracion/:id',async(req,res)=>{
+    const id = req.params.id;
+    try{
+    const oracion = await Oracion.findByIdAndRemove({_id: id});
+    if(oracion){
+        res.json({estado: true, message: 'oracion eliminada'});
+    }else{
+        res.json({estado: false, message: 'fallo al eliminar la oracion'});
+    }
+    }catch(e){
+        console.log(e);
+    }
+})
 module.exports = router;

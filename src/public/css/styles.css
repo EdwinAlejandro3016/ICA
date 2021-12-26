@@ -680,6 +680,68 @@ section img {
           flex-direction: column;
 }
 
+.motivo-oracion .formulario-oracion.admin {
+  overflow: auto;
+  width: 100%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.motivo-oracion .formulario-oracion.admin .oracion {
+  width: 100%;
+  max-width: 600px;
+  padding: 0 10px;
+  margin: 10px 0;
+  border-bottom: 3px solid #052a38;
+}
+
+.motivo-oracion .formulario-oracion.admin .oracion .nombre-icono {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.motivo-oracion .formulario-oracion.admin .oracion .nombre-icono p {
+  text-transform: uppercase;
+  font-size: 1.2em;
+  text-shadow: 2px 3px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+
+.motivo-oracion .formulario-oracion.admin .oracion .nombre-icono button {
+  display: inline-block;
+  padding: 0;
+  background: none;
+  color: #e63946;
+  font-size: 1.2em;
+  font-weight: 600;
+  -webkit-transition: .2s color ease;
+  transition: .2s color ease;
+  border: none;
+  outline: none;
+  margin: 0;
+  cursor: pointer;
+  letter-spacing: 0px;
+}
+
+.motivo-oracion .formulario-oracion.admin .oracion .nombre-icono button:hover {
+  color: rgba(230, 57, 70, 0.6);
+}
+
+.motivo-oracion .formulario-oracion.admin .oracion .motivo {
+  width: 100%;
+  text-align: left;
+  margin: 15px 0px;
+}
+
 .motivo-oracion .formulario-oracion h3 {
   font-size: 1.8em;
   text-shadow: 4px 6px rgba(0, 0, 0, 0.5);
@@ -727,7 +789,7 @@ section img {
 }
 
 .motivo-oracion .formulario-oracion button:hover {
-  letter-spacing: 4px;
+  letter-spacing: none;
 }
 
 .btn-oracion {

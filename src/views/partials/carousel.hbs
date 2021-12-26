@@ -30,36 +30,5 @@
         {{> formCrear}}
     {{/if}}
 
-{{#if ministerios}}
-<div class="info-carousel sec">
-    <div class="position-info">
-        <h2 id="titulo-info-carousel"></h2>
-        <i class="fas fa-times" id="cerrar-info"></i>
-    </div>
-    <p id="parrafo-info-carousel">parrafo - {{ infoMinisterio 'este es el paragraph'}} </p>
-    <div class="carousel">
-<div class="glider-contain">
-  <div class="glider" id="carousel-info">
-            <div class="carousel__elemento">
-                <img src="img/eventos/menu1.jpg" alt="" data-ministerio="alas de amor">
-                <p>alas de amor</p>
-            </div>   
-  </div>
-            <button aria-label="Previous" class="glider-prev glider-prev-info" id="btn-left-carousel">
-                    <i class="fas fa-chevron-left"></i>
-            </button>
-            <button aria-label="Next" class="glider-next glider-next-info" id="btn-right-carousel">
-                    <i class="fas fa-chevron-right"></i>
-            </button>
+{{> info-ministerio}}
 
-  <div role="tablist" class="dots dots-info"></div>
-</div>
-</div>
-
-    {{#if user}}
-    <div class="info oculto">
-            <button id="eliminar-ministerio" style="cursor: pointer;background: #e63946">Eliminar Ministerio</button>
-    </div>
-    {{/if}}
-</div>
-{{/if}}

@@ -106,13 +106,15 @@
     const btnCerrarInfo = document.getElementById('cerrar-info');
     const parrafoInfo = document.getElementById('parrafo-info-carousel');
 
+
     function slideInfo(e,data,close){   
       const {titulo, info,carpeta,dire} = data;
       const id = data._id;
       tituloInfoCarousel.textContent = titulo;
       parrafoInfo.textContent = info;
 
-        const btnEliminar = document.getElementById('eliminar-ministerio');
+      try{
+      const btnEliminar = document.getElementById('eliminar-ministerio');
         btnEliminar.addEventListener('click',async()=>{
           try{
             const data = await fetch(`/form/ministerio/eliminar/${id}`,{
@@ -132,7 +134,7 @@
             if(ok){
               window.location.href = '/';
 
-            }
+            } 
 
             ///////
 
@@ -142,14 +144,16 @@
 
        });
 
-
+      }catch(e){
+        console.log('el btn eliminar esta oculto')
+      }
       if(close){
         $('.info-carousel').slideUp();
       }else{
         e.preventDefault();
         $('.info-carousel').slideDown();
       }
-
+ 
     }
 
     try{
@@ -221,6 +225,7 @@
               return data;
            })
           .catch(()=>{console.log('error en la peticion')});
+          console.log(e);
           slideInfo(e,response,false);
        });
 
@@ -310,8 +315,22 @@
       console.log('no estamos en la cuenta privada');
     }
   
+    //oraciones
+    try{
+    const btnEliminarOracion = document.getElementById('eliminar-oracion');
+    btnEliminarOracion.addEventListener('click',async(e)=>{
+      const id = e.currentTarget.dataset.id;
+      const oracion = e.currentTarget;
+      const child = oracion.parentNode.parentNode;
+      child.parentNode.removeChild(child);
 
+      const peticion = await fetch(`/form/oracion/${id}`,{method: 'delete'});
+      const response = await peticion.json();
+      window.location.href = '/';
+    })
+    }catch(e){
 
+    }
 
 
 

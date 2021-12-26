@@ -1,8 +1,19 @@
 <div class="motivo-oracion">
 {{#if user}}
-     <div class="formulario-oracion">
+     <div class="formulario-oracion admin">
          <h3> Oraciones Recientes</h3>
-    </div>
+         {{#each oraciones}}
+         <div class="oracion">
+            <div class="nombre-icono">
+                <p class="nombre">{{nombre}}</p>
+                <button data-id="{{_id}}" id="eliminar-oracion"><i class="fas fa-trash"></i></button>
+            </div>
+            <div class="motivo">
+                <p class="motivo">{{motivo}}</p>
+            </div>
+         </div>
+         {{/each}}
+        </div>
 {{else}}
     <div class="formulario-oracion">
          <h3>¿ Quisieras que Oremos por ti ? </h3>
@@ -13,5 +24,6 @@
         </form>
     </div>
 {{/if}}
+
 </div>
 
