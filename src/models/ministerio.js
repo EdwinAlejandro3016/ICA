@@ -8,6 +8,7 @@ const ministerioSchema = new Schema({
     filename: { type: String, required: true}, // direcion de imagen para la vista
     carpeta: {type:String, required: true}, //direcion de la carpeta donde se encuentra el ministerio
     dire: {type:String, required: true}, //direcion donde se encuentra la imagen del ministerio
+    obras: { type: Array, required: true},
     date: {type: Date, default: Date.now}
 });
 

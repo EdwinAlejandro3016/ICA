@@ -104,21 +104,37 @@
     const btnRight = document.getElementById('btn-right-carousel');
     const tituloInfoCarousel = document.getElementById('titulo-info-carousel');
     const btnCerrarInfo = document.getElementById('cerrar-info');
-    const parrafoInfo = document.getElementById('parrafo-info-carousel');
+    const parrafoInfo =  document.getElementById('parrafo-info-carousel');
+    let elementosClick = [];
 
 
-    function slideInfo(e,data,close){   
-      const {titulo, info,carpeta,dire} = data;
+    async function slideInfo(e,data,close){   
+      const {titulo, info,carpeta,dire} = data; 
       const id = data._id;
       tituloInfoCarousel.textContent = titulo;
-      parrafoInfo.textContent = info;
+      parrafoInfo.textContent = info;  
+      const obras = data;
+      const carouselInfo = document.getElementById('carousel-info');
 
-      try{
+      if(data){
+
+        elementosClick.push(titulo);
+        carouselInfo.innerHTML = '';
+          obras.obras.forEach(async(obra)=>{
+            const htmlCarousel = `<div class="carousel__elemento">
+                                  <img src="${obra.direView}" alt="" data-ministerio="${titulo}">
+                              </div>   `;
+          carouselInfo.innerHTML += htmlCarousel;
+          });
+
+      }
+    /////////////////////////////////
+      try{ 
       const btnEliminar = document.getElementById('eliminar-ministerio');
         btnEliminar.addEventListener('click',async()=>{
           try{
             const data = await fetch(`/form/ministerio/eliminar/${id}`,{
-              method: 'delete',
+              method: 'delete', 
             });
             const respuesta = await data.json();
             
@@ -128,12 +144,11 @@
               headers: {
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({carpeta,dire})
+              body: JSON.stringify({carpeta,dire,obras})
             })
             const ok = await response.json();
             if(ok){
               window.location.href = '/';
-
             } 
 
             ///////
@@ -152,19 +167,21 @@
       }else{
         e.preventDefault();
         $('.info-carousel').slideDown();
+        await crearCarousel();
+        
       }
  
     }
 
     try{
     btnCerrarInfo.addEventListener('click',(e)=>{
-        slideInfo(e,'',true);
+        slideInfo(e,false,true);
       })
     }catch(e){
       console.log("vista bloqueda");
     }
 
-
+try{
     if(window.screen.width < 450){
       tituloMinisterio.textContent = elemCarousel[0].dataset.ministerio;
       
@@ -192,6 +209,7 @@
       ///////
     }
     else{
+
       btnLeft.addEventListener('click',(e)=>{
         tituloMinisterio.textContent = 'MINISTERIOS';
       })
@@ -208,7 +226,7 @@
 
     });
 
-
+///
     elemCarousel.forEach((elem)=>{
       elem.addEventListener('click',async(e)=>{
 
@@ -225,7 +243,6 @@
               return data;
            })
           .catch(()=>{console.log('error en la peticion')});
-          console.log(e);
           slideInfo(e,response,false);
        });
 
@@ -246,8 +263,36 @@
         
     });
 
-
-
+  }catch(e){
+  console.log(e);
+}
+    async function crearCarousel(){
+      await new Glider(document.getElementById('carousel-info'),{
+        slidesToShow: 1,
+        draggable:false,
+        slidesToScroll: 1,
+        dots: '.dots-info',
+        arrows: {
+          prev: '.glider-prev-info',
+          next: '.glider-next-info'
+        },responsive: [
+            {
+              breakpoint: 450, 
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                itemWidth: 150
+              }
+            },{
+                breakpoint: 1024, 
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 3,
+                }
+              }
+          ]
+    });
+  }
     window.addEventListener('load',async function(){
        await new Glider(document.querySelector('.glider'),{
             slidesToShow: 1,
@@ -273,30 +318,7 @@
                   }
               ]
         });
-       await new Glider(document.getElementById('carousel-info'),{
-          slidesToShow: 1,
-          draggable:false,
-          slidesToScroll: 1,
-          dots: '.dots-info',
-          arrows: {
-            prev: '.glider-prev-info',
-            next: '.glider-next-info'
-          },responsive: [
-              {
-                breakpoint: 450, 
-                settings: {
-                  slidesToShow: 2,
-                  slidesToScroll: 2,
-                }
-              },{
-                  breakpoint: 1024, 
-                  settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                  }
-                }
-            ]
-      });
+       
       $('.info-carousel').hide();
 
       // $('.slide-carousel-info').click(slideInfo(e,'yo'));
@@ -305,11 +327,11 @@
     // FORMULARIO CREAR MINISTERIO
     try{
 
-      $('.form-agregar-ministerio').hide();
+      $('.form-agregar-ministerio.crear').hide();
 
       $('#slideCrearMinisterio').click(function(e){
         e.preventDefault();
-          $('.form-agregar-ministerio').slideToggle();
+          $('.form-agregar-ministerio.crear').slideToggle();
       });
     }catch(e){
       console.log('no estamos en la cuenta privada');
@@ -322,14 +344,17 @@
       const id = e.currentTarget.dataset.id;
       const oracion = e.currentTarget;
       const child = oracion.parentNode.parentNode;
-      child.parentNode.removeChild(child);
+      console.log('por aqui');
 
       const peticion = await fetch(`/form/oracion/${id}`,{method: 'delete'});
       const response = await peticion.json();
-      window.location.href = '/';
+      if(response){
+        child.parentNode.removeChild(child);
+        window.location.href = '/';
+      }
     })
     }catch(e){
-
+      console.log(e);
     }
 
 

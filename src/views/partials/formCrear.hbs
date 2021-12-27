@@ -6,12 +6,13 @@
         <p style="color: red; text-align:center; font-weight:600; margin-top: 20px">{{errors.message}}</p>
     {{/if}}
    
-    <div class="form-agregar-ministerio">
+    <div class="form-agregar-ministerio crear">
         <div class="form">
         <form action="form/images/ministerios" method="POST" enctype="multipart/form-data">
             <input type="text" name="titulo" placeholder="Titulo Ministerio" required autofocus="true">
             <textarea name="info" cols="30" rows="5" placeholder="Sobre el ministerio" style="resize: none;" required></textarea> 
-            <input type="file" name="image" required>
+            <input type="file" name="image" id="image" required>
+            <input type="file" name="obras" multiple required>
             <button type="submit" id="btnCrearMinisterio">Crear</button>
         </form>        
     </div>
