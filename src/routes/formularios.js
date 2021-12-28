@@ -122,5 +122,5 @@ router.delete('/oracion/:id',async(req,res)=>{
     }
 })
 
-//coment
+//coment guardado
 module.exports = router;
