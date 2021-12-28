@@ -121,4 +121,6 @@ router.delete('/oracion/:id',async(req,res)=>{
         console.log(e);
     }
 })
+
+//coment
 module.exports = router;
