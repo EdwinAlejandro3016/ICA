@@ -1,26 +1,31 @@
-{{#if ministerios}}
-<div class="info-carousel sec">
+
+{{#each ministerios}}
+<div class="info-carousel sec" style="padding: 0 20px;" id="{{claseTarget}}">
     <div class="position-info">
-        <h2 id="titulo-info-carousel"></h2>
-        <i class="fas fa-times" id="cerrar-info"></i>
+        <h2 id="titulo-info-carousel">{{titulo}}</h2>
+        <button data-id="{{_id}}" class="btn-eliminar-ministerio"><i class="fas fa-trash"></i></button>
     </div>
-    <p id="parrafo-info-carousel">parrafo - {{ infoMinisterio 'este es el paragraph'}} </p>
-    <div class="carousel">
-
-<div class="glider-contain">
-  <div class="glider" id="carousel-info">
- 
-  </div>
-            <button aria-label="Previous" class="glider-prev glider-prev-info" id="btn-left-carousel">
-                    <i class="fas fa-chevron-left"></i>
-            </button>
-            <button aria-label="Next" class="glider-next glider-next-info" id="btn-right-carousel">
-                    <i class="fas fa-chevron-right"></i>
-            </button>
-
-  <div role="tablist" class="dots dots-info"></div>
-</div>
-</div>
+    <p id="parrafo-info-carousel">{{info}} </p>
+    
+            <div class="carousel carousel-ministerio">
+                <div class="glider-contain">
+                            <div class="glider {{claseTarget}}">
+                                {{#each obras}}
+                                        <div class="carousel__elemento">
+                                            <img src="{{direView}}" alt="{{titulo}}" data-ministerio="{{titulo}}" data-info="{{info}}" class="slide-carousel-info">
+                                            <p>{{titulo}}</p>
+                                        </div>
+                                    {{/each}}
+                            </div>
+                            <button aria-label="Previous" class="glider-prev {{clasePrev}}">
+                                    <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button aria-label="Next" class="glider-next {{claseNext}}">
+                                    <i class="fas fa-chevron-right"></i>
+                            </button>
+                      <div role="tablist" class="dots {{claseDots}}"></div>
+                </div>
+            </div>
 
     {{#if user}}
     <div class="info oculto">
@@ -28,4 +33,4 @@
     </div>
     {{/if}}
 </div>
-{{/if}}
+{{/each}}

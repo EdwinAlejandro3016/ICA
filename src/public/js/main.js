@@ -103,83 +103,6 @@
     const btnLeft = document.getElementById('btn-left-carousel');
     const btnRight = document.getElementById('btn-right-carousel');
     const tituloInfoCarousel = document.getElementById('titulo-info-carousel');
-    const btnCerrarInfo = document.getElementById('cerrar-info');
-    const parrafoInfo =  document.getElementById('parrafo-info-carousel');
-    let elementosClick = [];
-
-
-    async function slideInfo(e,data,close){   
-      const {titulo, info,carpeta,dire} = data; 
-      const id = data._id;
-      tituloInfoCarousel.textContent = titulo;
-      parrafoInfo.textContent = info;  
-      const obras = data;
-      const carouselInfo = document.getElementById('carousel-info');
-
-      if(data){
-
-        elementosClick.push(titulo);
-        carouselInfo.innerHTML = '';
-          obras.obras.forEach(async(obra)=>{
-            const htmlCarousel = `<div class="carousel__elemento">
-                                  <img src="${obra.direView}" alt="" data-ministerio="${titulo}">
-                              </div>   `;
-          carouselInfo.innerHTML += htmlCarousel;
-          });
-
-      }
-    /////////////////////////////////
-      try{ 
-      const btnEliminar = document.getElementById('eliminar-ministerio');
-        btnEliminar.addEventListener('click',async()=>{
-          try{
-            const data = await fetch(`/form/ministerio/eliminar/${id}`,{
-              method: 'delete', 
-            });
-            const respuesta = await data.json();
-            
-            // para eliminar la carpeta
-            const response = await fetch('/form/ministerio/eliminar',{
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({carpeta,dire,obras})
-            })
-            const ok = await response.json();
-            if(ok){
-              window.location.href = '/';
-            } 
-
-            ///////
-
-          }catch(e){
-              console.log(e);
-          }
-
-       });
-
-      }catch(e){
-        console.log('el btn eliminar esta oculto')
-      }
-      if(close){
-        $('.info-carousel').slideUp();
-      }else{
-        e.preventDefault();
-        $('.info-carousel').slideDown();
-        await crearCarousel();
-        
-      }
- 
-    }
-
-    try{
-    btnCerrarInfo.addEventListener('click',(e)=>{
-        slideInfo(e,false,true);
-      })
-    }catch(e){
-      console.log("vista bloqueda");
-    }
 
 try{
     if(window.screen.width < 450){
@@ -225,28 +148,21 @@ try{
       }
 
     });
-
+   
 ///
-    elemCarousel.forEach((elem)=>{
-      elem.addEventListener('click',async(e)=>{
 
-          const ministerio = e.target.dataset.ministerio;
-          const response = await fetch('/form/ministerio/info',{
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({titulo: ministerio})
-          })
-          .then(res=>res.json())
-          .then(data=>{ 
-              return data;
-           })
-          .catch(()=>{console.log('error en la peticion')});
-          slideInfo(e,response,false);
-       });
+    const btnEliminarMinisterio = document.querySelectorAll('.btn-eliminar-ministerio');
 
-
+    btnEliminarMinisterio.forEach(btn=>{
+      btn.addEventListener('click',async(e)=>{
+        const id = e.currentTarget.dataset.id;
+        const peticion = await fetch(`/form/ministerio/eliminar/${id}`,{method: 'delete'});
+          const response = await peticion.json();
+          if(response){
+            console.log(response);
+            window.location.href = '/';
+          }
+      })
     })
 
     let contadorCarousel = 1;
@@ -266,39 +182,54 @@ try{
   }catch(e){
   console.log(e);
 }
-    async function crearCarousel(){
-      await new Glider(document.getElementById('carousel-info'),{
-        slidesToShow: 1,
-        draggable:false,
-        slidesToScroll: 1,
-        dots: '.dots-info',
-        arrows: {
-          prev: '.glider-prev-info',
-          next: '.glider-next-info'
-        },responsive: [
-            {
-              breakpoint: 450, 
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                itemWidth: 150
-              }
-            },{
-                breakpoint: 1024, 
-                settings: {
-                  slidesToShow: 3,
-                  slidesToScroll: 3,
-                }
-              }
-          ]
-    });
-  }
+
+      const crearCarousel = async({claseTarget,clasePrev,claseNext,claseDots})=>{
+
+            await new Glider(document.querySelector(`.${claseTarget}`),{
+              slidesToShow: 1,
+              draggable:false,
+              slidesToScroll: 1,
+              dots: `.${claseDots}`,
+              arrows: {
+                prev: `.${clasePrev}`,
+                next: `.${claseNext}`
+              },responsive: [
+                  {
+                    breakpoint: 450, 
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2,
+                      itemWidth: 150
+                    }
+                  },{
+                      breakpoint: 1024, 
+                      settings: {
+                        slidesToShow: 3, 
+                        slidesToScroll: 3, 
+                      }
+                    }
+                ]
+          });
+      }
+
+      const todos = document.querySelectorAll('.carousel-ministerio');
+      todos.forEach(async(elem)=>{
+        const clases = {};
+        const guia = elem.childNodes[1].children;
+        clases.claseTarget = guia[0].classList[1];
+        clases.clasePrev = guia[1].classList[1];
+        clases.claseNext = guia[2].classList[1]; 
+        clases.claseDots = guia[3].classList[1];
+        await crearCarousel(clases);
+      }); 
+
     window.addEventListener('load',async function(){
-       await new Glider(document.querySelector('.glider'),{
+      try{
+       await new Glider(document.querySelector('.glider.ministerios'),{
             slidesToShow: 1,
             slidesToScroll: 1,
             draggable: false,
-            dots: '.dots',
+            dots: '.dots-ministerios',
             arrows: {
               prev: '.glider-prev',
               next: '.glider-next'
@@ -318,12 +249,36 @@ try{
                   }
               ]
         });
-       
-      $('.info-carousel').hide();
 
-      // $('.slide-carousel-info').click(slideInfo(e,'yo'));
+      //   await new Glider(document.querySelector('.glider-info-otro-ministerio'),{
+      //     slidesToShow: 1,
+      //     draggable:false,
+      //     slidesToScroll: 1,
+      //     dots: '.dots-info-otro-ministerio',
+      //     arrows: {
+      //       prev: '.glider-prev-info-otro-ministerio',
+      //       next: '.glider-next-info-otro-ministerio'
+      //     },responsive: [
+      //         {
+      //           breakpoint: 450, 
+      //           settings: {
+      //             slidesToShow: 2,
+      //             slidesToScroll: 2,
+      //             itemWidth: 150
+      //           }
+      //         },{
+      //             breakpoint: 1024, 
+      //             settings: {
+      //               slidesToShow: 3, 
+      //               slidesToScroll: 3, 
+      //             }
+      //           }
+      //       ]
+      // });
+      }catch(e){
+        console.log(e);
+      }
     })
-
     // FORMULARIO CREAR MINISTERIO
     try{
 

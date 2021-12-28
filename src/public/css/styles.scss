@@ -22,10 +22,9 @@ $crear:rgb(12, 129, 61);
 @import '__Footer.scss';
 @import '__CrearMinisterio.scss';
 
-
 body{
     overflow-x: hidden;
-    background-color: $first;
+    background-color: $first; 
     min-height: 100vh;
 }
 
@@ -396,18 +395,23 @@ section{
                 justify-content: space-between;
                 align-items: center;
                 text-align: center;
-
-                #cerrar-info{
-                    background-color: $darkFirst;
-                    padding: 10px;
-                    border-radius: 50%;
-                    font-size: 1.7em;
-                    color: #fff; 
+                .btn-eliminar-ministerio{
+                    display: inline-block;
+                    padding: 0;
+                    background: none;
+                    color: $eliminar;
+                    font-size: 1.2em;
+                    font-weight: 600;
                     transition: .2s color ease;
+                    border: none;
+                    outline: none;
+                    margin: 0;
                     cursor: pointer;
-                    &:hover{
-                        color: rgba(255,255,255,.8);
-                    }
+                    letter-spacing: 0px;
+                        &:hover{
+                            color: rgba($eliminar,.6);
+                        }
+                    
                 }
             }
         }

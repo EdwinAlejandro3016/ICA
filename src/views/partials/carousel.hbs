@@ -5,7 +5,7 @@
   <div class="glider ministerios">
       {{#each ministerios}}
             <div class="carousel__elemento">
-                <img src="{{filename}}" alt="{{titulo}}" data-ministerio="{{titulo}}" data-info="{{info}}" class="slide-carousel-info">
+                <a href="#{{claseTarget}}"><img src="{{filename}}" alt="{{titulo}}" data-ministerio="{{titulo}}" data-info="{{info}}" class="slide-carousel-info"></a>
                 <p>{{titulo}}</p>
             </div>
         {{/each}}
@@ -17,7 +17,7 @@
                     <i class="fas fa-chevron-right"></i>
             </button>
 
-  <div role="tablist" class="dots"></div>
+  <div role="tablist" class="dots dots-ministerios"></div>
 </div>
 </div>
 
@@ -31,4 +31,3 @@
     {{/if}}
 
 {{> info-ministerio}}
-

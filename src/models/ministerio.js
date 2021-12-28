@@ -9,6 +9,10 @@ const ministerioSchema = new Schema({
     carpeta: {type:String, required: true}, //direcion de la carpeta donde se encuentra el ministerio
     dire: {type:String, required: true}, //direcion donde se encuentra la imagen del ministerio
     obras: { type: Array, required: true},
+    claseTarget:  { type: String, required: true},
+    claseDots:  { type: String, required: true},
+    clasePrev:  { type: String, required: true},
+    claseNext:  { type: String, required: true},
     date: {type: Date, default: Date.now}
 });
 

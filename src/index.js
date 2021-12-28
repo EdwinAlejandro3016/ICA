@@ -57,11 +57,12 @@ app.use((req,res,next)=>{
 app.use('/',require('./routes/inicio'));  
 app.use('/users',require('./routes/users'));
 app.use('/form',require('./routes/formularios'));
+app.use('/ministerios',require('./routes/ministerios')); 
 
 //static files
 app.use(express.static(__dirname + '/public'));
 
 // Listening
 app.listen(port,()=>{
-    console.log('servidor en puerto',port);
+    console.log('servidor en puerto',port); 
 })

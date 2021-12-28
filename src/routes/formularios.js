@@ -15,34 +15,35 @@ router.post('/ministerio/info',async(req,res)=>{
 //eliminar ministerio
 router.delete('/ministerio/eliminar/:id',async(req,res)=>{
     const id = req.params.id;
-    const filename = req.params.titulo;
-    try{
-        const ministerioDB = await Ministerio.findByIdAndDelete({_id: id});
-        if(ministerioDB){
-            res.json({estado: true, message: 'ministerio eliminado'});
-        }else{
-            res.json({estado: false, message: 'fallo al eliminar ministerio'});
-        }
-    }catch(e){
-        console.log(e);
-    } 
-})
+    const ministerio = await Ministerio.findOne({_id: id});
+    const {carpeta,dire,obras} = ministerio;
 
-// eliminar carpeta del ministerio
-router.post('/ministerio/eliminar',async(req,res)=>{
-    let {carpeta,dire,obras} = req.body;
-    obras.obras.forEach(async(obra)=>{
+    try{
+    await fs.unlink(dire); // elimina la imagen principal
+
+    await obras.forEach(async(obra)=>{
         const ext = path.extname(obra.originalname).toLocaleLowerCase();
         const filename = `${obra.filename}${ext}`;
         const direcionImages = `${carpeta}/obras/${filename}`;
-        const img = await fs.unlink(direcionImages);
-        console.log(img,'imagen eliminada de obras');
-    });
+        await fs.unlink(direcionImages);
+        console.log(direcionImages,'imagen eliminada de obras');
+    })
+  
     await fs.rmdir(`${carpeta}/obras`);
-    await fs.unlink(dire); // elimina la imagen principal
     await fs.rmdir(carpeta);
-    res.json({ok: true});
-})  
+    }catch(e){
+        console.log(e);
+    }
+
+    try{
+        const ministerioDB = await Ministerio.findByIdAndDelete({_id: id});
+        res.json({ok: true});
+        console.log('por qeui');
+    }catch(e){
+        res.json({ok: false});
+    } 
+})
+
 
 // crear nuevo ministerio
 router.post('/images/ministerios',async(req,res)=>{
@@ -53,10 +54,17 @@ router.post('/images/ministerios',async(req,res)=>{
     filename = `${filename}${ext}`; //imagen con extension
     let errors = [];
     let obras = req.files.obras;
-    console.log(obras);
     const pathFolder = `src/public/img/ministerios/${titulo}`; // direcion carpeta a mover
     const targetPath = path.resolve(`src/public/img/ministerios/${titulo}/${filename}`); // direcion donde estara la imagen
     const viewImg = `/img/ministerios/${titulo}/${filename}`; // direcion para buscar imagen en la vista
+
+    const espacios = titulo.replace(/\s/g,'-');
+    ///clases para carousel
+    const claseTarget = `glider-info-${espacios}`;
+    const claseDots = `dots-info-${espacios}`;
+    const clasePrev = `glider-prev-info-${espacios}`;
+    const claseNext = `glider-next-info-${espacios}`;
+
     if(ext === '.png' || ext === '.jpg' || ext === '.gif' || ext === '.jpge'){
         if(!fs.existsSync(pathFolder)){
             await fs.mkdir(pathFolder);
@@ -71,7 +79,9 @@ router.post('/images/ministerios',async(req,res)=>{
                 obra.direView = `/img/ministerios/${titulo}/obras/${filenameObra}`;
                 await fs.rename(obra.path,targetPathObras);
             })
-            const newMinisterio = await new Ministerio({ titulo, info, filename: viewImg, carpeta: pathFolder, dire: targetPath, obras}); 
+            const newMinisterio = await new Ministerio
+            ({ titulo, info, filename: viewImg, carpeta: pathFolder, dire: targetPath, obras,
+                claseTarget,claseDots,clasePrev,claseNext }); 
             const ministerioSaved = await newMinisterio.save();
             console.log(ministerioSaved); 
         }else{
