@@ -59,6 +59,7 @@ body{
     .navigation{ 
         @include center();
         transition: .5s;
+        margin-bottom: 0px;   
         a{ 
             text-decoration: none;
             padding: 6px 15px;
@@ -72,7 +73,7 @@ body{
                 color: #fff;
             }
             li{
-                list-style: none;
+                list-style: none; 
             }
         }
 
@@ -416,6 +417,52 @@ section{
             }
         }
 
+        ////form enviar mas imagenes
+
+    .form-otra-img{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+        
+        button{
+            border: none;
+            outline: none;
+            background: $crear;
+            margin-left: 20px;
+            padding: 5px 20px;
+            color: #fff;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+    }
+
+    ///estilo input file
+    .file-select{
+        position: relative;
+        display: inline-block;
+        &::before{ 
+            background: #fff;
+            color: $crear;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 3px;
+            content: 'Subir más Imágenes';  
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0; 
+            bottom: 0;
+        }
+        input[type="file"]{
+            opacity: 0; 
+            width: 200px;
+            height: 32px;
+            display: inline-block;
+        }
+    }
         // motivo de oracion
         .motivo-oracion{
             z-index:1300;

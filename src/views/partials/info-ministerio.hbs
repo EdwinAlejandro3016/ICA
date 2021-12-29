@@ -24,13 +24,16 @@
                                     <i class="fas fa-chevron-right"></i>
                             </button>
                       <div role="tablist" class="dots {{claseDots}}"></div>
-                </div>
+                </div>  
             </div>
 
-    {{#if user}}
-    <div class="info oculto">
-            <button id="eliminar-ministerio" style="cursor: pointer;background: #e63946">Eliminar Ministerio</button>
-    </div>
-    {{/if}}
+        <div class="form-otra-img">
+        <form action="form/images/otra/{{_id}}" method="POST" enctype="multipart/form-data">
+        <div class="file-select" id="obrasN">
+            <input type="file" name="obrasN" multiple required aria-label="subir imágenes">
+        </div>
+            <button type="submit">Enviar</button>
+        </form> 
+        </div>
 </div>
 {{/each}}

@@ -131,4 +131,28 @@ router.delete('/oracion/:id',async(req,res)=>{
     }
 })
 
+router.post('/images/otra/:id',async(req,res)=>{
+    const files = req.files.obrasN;
+    const id = req.params.id;
+    const ministerio = await Ministerio.findOne({_id: id});
+    const obras = ministerio.obras;
+
+    const {titulo} = ministerio;
+    files.forEach(async(obra)=>{
+        let extObra = path.extname(obra.originalname).toLocaleLowerCase();
+        let filenameObra = obra.filename;
+        filenameObra =  `${filenameObra}${extObra}`;
+        let targetPathObras = path.resolve(`src/public/img/ministerios/${titulo}/obras/${filenameObra}`);
+        obra.direView = `/img/ministerios/${titulo}/obras/${filenameObra}`;
+        await fs.rename(obra.path,targetPathObras);
+    });
+
+    const obrasTotales = [...obras,...files];
+    ministerio.obras = obrasTotales;
+
+    const ministerioUpdate = await Ministerio.findByIdAndUpdate(id,ministerio,{useFindAndModifiy: false});
+    /////configurar en midlewares
+    req.flash('success_msg','Ministerio Actualizado correctamente');
+    res.redirect('/');
+})
 module.exports = router; 
