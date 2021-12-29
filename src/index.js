@@ -7,6 +7,7 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
+const flash = require('connect-flash');
 const multer = require('multer');
 require('dotenv').config();  
 require('./config/passport');
@@ -41,13 +42,15 @@ app.use(session({
     resave:true,
     saveUninitialized:true
 }));
+app.use(flash());
 
 app.use(passport.initialize(require('./config/passport')));
 app.use(passport.session());
 
 // Global Variables
 app.use((req,res,next)=>{
-    res.locals.yo = "Edwin";
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
     res.locals.user = req.user;
     next();
 })

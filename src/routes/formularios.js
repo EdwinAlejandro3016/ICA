@@ -14,11 +14,11 @@ router.post('/ministerio/info',async(req,res)=>{
 
 //eliminar ministerio
 router.delete('/ministerio/eliminar/:id',async(req,res)=>{
+    try{
     const id = req.params.id;
     const ministerio = await Ministerio.findOne({_id: id});
     const {carpeta,dire,obras} = ministerio;
 
-    try{
     await fs.unlink(dire); // elimina la imagen principal
 
     await obras.forEach(async(obra)=>{
@@ -27,21 +27,26 @@ router.delete('/ministerio/eliminar/:id',async(req,res)=>{
         const direcionImages = `${carpeta}/obras/${filename}`;
         await fs.unlink(direcionImages);
         console.log(direcionImages,'imagen eliminada de obras');
+        try{
+            await fs.rmdir(`${carpeta}/obras`);
+            await fs.rmdir(carpeta);
+        }catch(e){
+            console.log(e);
+        }
     })
   
-    await fs.rmdir(`${carpeta}/obras`);
-    await fs.rmdir(carpeta);
+    try{
+        const ministerioDB = await Ministerio.findByIdAndDelete({_id: id});
+        req.flash('success_msg','Ministerio eliminado correctamente');
+        res.json({ok: true});
+    }catch(e){
+        req.flash('error_msg','Error al eliminar Ministerio');
+        res.json({ok: false});
+    } 
+
     }catch(e){
         console.log(e);
     }
-
-    try{
-        const ministerioDB = await Ministerio.findByIdAndDelete({_id: id});
-        res.json({ok: true});
-        console.log('por qeui');
-    }catch(e){
-        res.json({ok: false});
-    } 
 })
 
 
@@ -95,6 +100,7 @@ router.post('/images/ministerios',async(req,res)=>{
     }else{
         errors.push({message: "Este formato de imagén no esta permitido"});
     }
+    req.flash('success_msg','Ministerio creado correctamente');
     res.redirect('/');
 });
 
@@ -104,6 +110,7 @@ router.post('/oracion',async(req,res)=>{
     const newOracion = await new Oracion(req.body);
     const oracionSaved = await newOracion.save();
     console.log(oracionSaved);
+    req.flash('success_msg','Oración enviada correctamente');
     res.redirect('/');
 
 })
@@ -113,8 +120,10 @@ router.delete('/oracion/:id',async(req,res)=>{
     try{
     const oracion = await Oracion.findByIdAndRemove({_id: id});
     if(oracion){
+        req.flash('success_msg','Oración eliminada correctamente');
         res.json({estado: true, message: 'oracion eliminada'});
     }else{
+        req.flash('error_msg','fallo al eliminar la oracion');
         res.json({estado: false, message: 'fallo al eliminar la oracion'});
     }
     }catch(e){
@@ -122,5 +131,4 @@ router.delete('/oracion/:id',async(req,res)=>{
     }
 })
 
-//coment guardado
-module.exports = router;
+module.exports = router; 

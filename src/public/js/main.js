@@ -249,32 +249,6 @@ try{
                   }
               ]
         });
-
-      //   await new Glider(document.querySelector('.glider-info-otro-ministerio'),{
-      //     slidesToShow: 1,
-      //     draggable:false,
-      //     slidesToScroll: 1,
-      //     dots: '.dots-info-otro-ministerio',
-      //     arrows: {
-      //       prev: '.glider-prev-info-otro-ministerio',
-      //       next: '.glider-next-info-otro-ministerio'
-      //     },responsive: [
-      //         {
-      //           breakpoint: 450, 
-      //           settings: {
-      //             slidesToShow: 2,
-      //             slidesToScroll: 2,
-      //             itemWidth: 150
-      //           }
-      //         },{
-      //             breakpoint: 1024, 
-      //             settings: {
-      //               slidesToShow: 3, 
-      //               slidesToScroll: 3, 
-      //             }
-      //           }
-      //       ]
-      // });
       }catch(e){
         console.log(e);
       }
@@ -294,20 +268,20 @@ try{
   
     //oraciones
     try{
-    const btnEliminarOracion = document.getElementById('eliminar-oracion');
-    btnEliminarOracion.addEventListener('click',async(e)=>{
-      const id = e.currentTarget.dataset.id;
-      const oracion = e.currentTarget;
-      const child = oracion.parentNode.parentNode;
-      console.log('por aqui');
-
-      const peticion = await fetch(`/form/oracion/${id}`,{method: 'delete'});
-      const response = await peticion.json();
-      if(response){
-        child.parentNode.removeChild(child);
-        window.location.href = '/';
-      }
+    const btnEliminarOracion = document.querySelectorAll('.eliminar-oracion');
+    btnEliminarOracion.forEach(btn=>{
+      btn.addEventListener('click',async(e)=>{
+        const id = e.currentTarget.dataset.id;
+        const oracion = e.currentTarget;
+        const peticion = await fetch(`/form/oracion/${id}`,{method: 'delete'});
+        const response = await peticion.json();
+        const child = oracion.parentNode.parentNode;
+        if(response){
+          child.parentNode.removeChild(child);   
+        }
+      })
     })
+
     }catch(e){
       console.log(e);
     }
