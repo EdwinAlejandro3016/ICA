@@ -1,39 +1,74 @@
 
-{{#each ministerios}}
-<div class="info-carousel sec" style="padding: 0 20px;" id="{{claseTarget}}">
-    <div class="position-info">
-        <h2 id="titulo-info-carousel">{{titulo}}</h2>
-        <button data-id="{{_id}}" class="btn-eliminar-ministerio"><i class="fas fa-trash"></i></button>
-    </div>
-    <p id="parrafo-info-carousel">{{info}} </p>
-    
-            <div class="carousel carousel-ministerio">
-                <div class="glider-contain">
-                            <div class="glider {{claseTarget}}">
-                                {{#each obras}}
-                                        <div class="carousel__elemento">
-                                            <img src="{{direView}}" alt="{{titulo}}" data-ministerio="{{titulo}}" data-info="{{info}}" class="slide-carousel-info">
-                                            <p>{{titulo}}</p>
-                                        </div>
-                                    {{/each}}
-                            </div>
-                            <button aria-label="Previous" class="glider-prev {{clasePrev}}">
-                                    <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button aria-label="Next" class="glider-next {{claseNext}}">
-                                    <i class="fas fa-chevron-right"></i>
-                            </button>
-                      <div role="tablist" class="dots {{claseDots}}"></div>
-                </div>  
+{{#if ministerios}}
+    {{#if user}}
+        {{#each ministerios}}
+    <div class="info-carousel sec" style="padding: 0 20px;" id="{{claseTarget}}">
+        <div class="position-info">
+            <h2 id="titulo-info-carousel">{{titulo}}</h2>
+            <button data-id="{{_id}}" class="btn-eliminar-ministerio"><i class="fas fa-trash"></i></button>
+        </div>
+        <p id="parrafo-info-carousel">{{info}} </p>
+        
+                <div class="carousel carousel-ministerio">
+                    <div class="glider-contain">
+                                <div class="glider {{claseTarget}}">
+                                    {{#each obras}}
+                                            <div class="carousel__elemento">
+                                                <img src="{{direView}}" alt="{{titulo}}" data-ministerio="{{titulo}}" data-info="{{info}}" class="slide-carousel-info">
+                                                <p>{{titulo}}</p>
+                                            </div>
+                                        {{/each}}
+                                </div>
+                                <button aria-label="Previous" class="glider-prev {{clasePrev}}">
+                                        <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button aria-label="Next" class="glider-next {{claseNext}}">
+                                        <i class="fas fa-chevron-right"></i>
+                                </button>
+                        <div role="tablist" class="dots {{claseDots}}"></div>
+                    </div>  
+                </div>
+
+
+            <div class="form-otra-img">
+            <form action="form/images/otra/{{_id}}" method="POST" enctype="multipart/form-data">
+            <div class="file-select" id="obrasN">
+                <input type="file" name="obrasN" multiple required aria-label="subir imágenes">
+            </div>
+                <button type="submit">Enviar</button>
+            </form> 
             </div>
 
-        <div class="form-otra-img">
-        <form action="form/images/otra/{{_id}}" method="POST" enctype="multipart/form-data">
-        <div class="file-select" id="obrasN">
-            <input type="file" name="obrasN" multiple required aria-label="subir imágenes">
+    </div>
+        {{/each}}
+        {{else}}
+        {{#each ministerios}}
+    <div class="info-carousel sec" style="padding: 0 20px;" id="{{claseTarget}}">
+        <div class="position-info">
+            <h2 id="titulo-info-carousel">{{titulo}}</h2>
         </div>
-            <button type="submit">Enviar</button>
-        </form> 
-        </div>
-</div>
-{{/each}}
+        <p id="parrafo-info-carousel">{{info}} </p>
+        
+                <div class="carousel carousel-ministerio">
+                    <div class="glider-contain">
+                                <div class="glider {{claseTarget}}">
+                                    {{#each obras}}
+                                            <div class="carousel__elemento">
+                                                <img src="{{direView}}" alt="{{titulo}}" data-ministerio="{{titulo}}" data-info="{{info}}" class="slide-carousel-info">
+                                                <p>{{titulo}}</p>
+                                            </div>
+                                        {{/each}}
+                                </div>
+                                <button aria-label="Previous" class="glider-prev {{clasePrev}}">
+                                        <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button aria-label="Next" class="glider-next {{claseNext}}">
+                                        <i class="fas fa-chevron-right"></i>
+                                </button>
+                        <div role="tablist" class="dots {{claseDots}}"></div>
+                    </div>  
+                </div>
+    </div> 
+        {{/each}}
+    {{/if}}
+{{/if}}

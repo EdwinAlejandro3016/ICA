@@ -34,10 +34,10 @@ app.set('view engine','.hbs');
 
 
 // middlewares 
-app.use(multer({dest: path.join(__dirname,'public/img/temp')}).fields([{name: 'image', maxCount: 1},{name: 'obras',maxCount: 8},{name: 'obrasN',maxCount: 8}]));
+app.use(multer({dest: path.join(__dirname,'public/img/temp')}).fields([{name: 'image', maxCount: 1},{name: 'obras',maxCount: 8},{name: 'obrasN',maxCount: 8}])); 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-app.use(session({
+app.use(session({ 
     secret: 'mysecret',
     resave:true,
     saveUninitialized:true

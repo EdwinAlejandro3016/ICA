@@ -28,6 +28,10 @@ body{
     min-height: 100vh;
 }
 
+img{
+    object-fit: cover; 
+    min-height: 100%;
+}
 // navbar
  
 #header{  
@@ -346,6 +350,9 @@ section{
                 text-align: center;
                 color: rgba(255,255,255,.8);
                 cursor:pointer;
+                .glider-track{
+                    max-height: 350px; 
+                }
                 .dots,
                 .dots-info{ 
                     .glider-dot{
@@ -384,6 +391,7 @@ section{
 
         .info-carousel{
             width: 100%;
+            padding: 20px 0px !important;
             p{
                 color: #fff;
                 font-size: 1em; 
@@ -429,9 +437,10 @@ section{
             border: none;
             outline: none;
             background: $crear;
-            margin-left: 20px;
+            display: block;
+            margin: 20px auto;
             padding: 5px 20px;
-            color: #fff;
+            color: #fff; 
             border-radius: 3px;
             font-weight: 500;
         }

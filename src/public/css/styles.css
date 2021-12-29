@@ -188,6 +188,12 @@ body {
   min-height: 100vh;
 }
 
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  min-height: 100%;
+}
+
 #header {
   position: fixed;
   background-color: #fff;
@@ -571,6 +577,10 @@ section img {
   cursor: pointer;
 }
 
+.carousel .glider-contain .glider-track {
+  max-height: 350px;
+}
+
 .carousel .glider-contain .dots .glider-dot,
 .carousel .glider-contain .dots-info .glider-dot {
   height: 4px;
@@ -605,6 +615,7 @@ section img {
 
 .info-carousel {
   width: 100%;
+  padding: 20px 0px !important;
 }
 
 .info-carousel p {
@@ -663,7 +674,8 @@ section img {
   border: none;
   outline: none;
   background: #0c813d;
-  margin-left: 20px;
+  display: block;
+  margin: 20px auto;
   padding: 5px 20px;
   color: #fff;
   border-radius: 3px;
