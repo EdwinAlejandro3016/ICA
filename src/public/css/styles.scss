@@ -336,7 +336,7 @@ section{
                     display: block;
                     text-decoration: none;
                     color: rgba(255,255,255,.8); 
-                } 
+                }  
             }
         }
     }
@@ -404,7 +404,7 @@ section{
                 justify-content: space-between;
                 align-items: center;
                 text-align: center;
-                .btn-eliminar-ministerio{
+                button{
                     display: inline-block;
                     padding: 0;
                     background: none;
@@ -414,9 +414,18 @@ section{
                     transition: .2s color ease;
                     border: none;
                     outline: none;
-                    margin: 0;
+                    margin: 0 5px;
                     cursor: pointer;
                     letter-spacing: 0px;
+                }
+                .btn-editar-ministerio{
+                    color: $crear;
+                    &:hover{
+                        color: rgba($crear,.6);
+                    }
+                }
+                .btn-eliminar-ministerio{
+                    color: $eliminar; 
                         &:hover{
                             color: rgba($eliminar,.6);
                         }
@@ -700,3 +709,59 @@ section{
         width: 100%;
     }
 }   
+
+////contenedor imagen unica
+
+.contenedor-img{
+    width: 100%;
+    height: 100vh;
+    background-color: $first;
+    position: relative;
+    @include center();
+    .btn-eliminar-img-unique{
+        position: absolute;
+        bottom: 20px;
+
+        button{
+            background-color: rgba($eliminar,.8);
+            i{
+                margin-left: 10px;
+            }
+            &:hover{
+                background-color: $eliminar;
+            }
+        }
+    }
+    .salir-unique-img{
+        position: absolute;
+        top: 0;
+        right: 0;  
+       
+    }
+    .unique-image{
+        width: 100%;
+        height: 500px;
+        box-shadow: 20px 20px 50px rgba(0,0,0,.5);
+        img{
+            object-fit: contain;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    button{
+        display: inline-block;
+        cursor:pointer;
+        font-size: 1.1em;
+        border: none;
+        outline: none;
+        padding: 5px 15px;
+        background: rgba($crear,.8);
+        color: rgba(255,255,255,.8);   
+        box-shadow: -1px 1px 2px 1px rgba(0,0,0,.5); 
+        transition: .3s;
+        &:hover{
+            background: $crear;
+            color: #fff;          
+         }
+    }
+}

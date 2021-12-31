@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const Ministerio = require('../models/ministerio');
 const Oracion = require('../models/oracion');
+const { json } = require('express');
 
                             //MINISTERIOS
 
@@ -49,9 +50,24 @@ router.delete('/ministerio/eliminar/:id',async(req,res)=>{
     }
 })
 
+//editar info ministerio
 
+router.post('/ministerio/editar',async(req,res)=>{
+    try{
+    const {id,info} = req.body;
+    const ministerio = await Ministerio.findOne({_id: id});
+    ministerio.info = info;
+    const ministerioDB = await Ministerio.findByIdAndUpdate(id,ministerio,{useFindAndModifiy: false});
+    req.flash('success_msg','Ministerio Actualizado correctamente');
+    res.json({msg: 'ok'});
+    }catch(e){
+        req.flash('error_msg','No se ah podido editar la información');
+        res.json(false);
+    }
+})
 // crear nuevo ministerio
 router.post('/images/ministerios',async(req,res)=>{
+    try{
     const { titulo, info } = req.body;
     const ext = path.extname(req.files.image[0].originalname).toLocaleLowerCase();
     const imageDire = req.files.image[0].path; //direcion actual de la imagen
@@ -94,11 +110,17 @@ router.post('/images/ministerios',async(req,res)=>{
             obras.forEach(async(obra)=>{
                 await fs.unlink(obra.path);
             })
-            errors.push({message: "Ya hay otro ministerio con este nombre"});
+            req.flash('error_msg','Ya hay otro ministerio con este nombre');
+            res.redirect('/');
         } 
 
     }else{
-        errors.push({message: "Este formato de imagén no esta permitido"});
+        req.flash('error_msg','Este formato de imagén no esta permitido');
+        res.redirect('/');
+    }
+
+    }catch(e){
+        console.log(e);
     }
     req.flash('success_msg','Ministerio creado correctamente');
     res.redirect('/');
@@ -109,7 +131,6 @@ router.post('/images/ministerios',async(req,res)=>{
 router.post('/oracion',async(req,res)=>{
     const newOracion = await new Oracion(req.body);
     const oracionSaved = await newOracion.save();
-    console.log(oracionSaved);
     req.flash('success_msg','Oración enviada correctamente');
     res.redirect('/');
 
@@ -132,6 +153,7 @@ router.delete('/oracion/:id',async(req,res)=>{
 })
 
 router.post('/images/otra/:id',async(req,res)=>{
+    try{
     const files = req.files.obrasN;
     const id = req.params.id;
     const ministerio = await Ministerio.findOne({_id: id});
@@ -147,12 +169,71 @@ router.post('/images/otra/:id',async(req,res)=>{
         await fs.rename(obra.path,targetPathObras);
     });
 
-    const obrasTotales = [...obras,...files];
+    const obrasTotales = [...files,...obras];
     ministerio.obras = obrasTotales;
 
     const ministerioUpdate = await Ministerio.findByIdAndUpdate(id,ministerio,{useFindAndModifiy: false});
     /////configurar en midlewares
     req.flash('success_msg','Ministerio Actualizado correctamente');
     res.redirect('/');
+
+    }catch(e){ 
+        console.log(e); 
+        req.flash('error_msg','El Ministerio no pudo ser Actualizado');
+        res.redirect('/');
+    }
+})
+
+
+router.get('/image/vista/:filename/:id',async(req,res)=>{
+    try{
+    const {filename,id} = req.params;
+    console.log(req.params);
+    const ministerio = await Ministerio.findOne({_id: id});
+    const {obras} = ministerio;
+    let dire = "";
+    const img = obras.map(obra=>{
+        if(obra.filename === filename){
+            dire = obra.direView;
+        }
+    });
+    res.render('unique-image',{image: dire,bloquear: true,filename,id});
+    }catch(e){
+        console.log(e);
+    }
+})
+
+router.post('/image/eliminar',async(req,res)=>{
+    try{
+    const {id,filename} = req.body;
+    const ministerio = await Ministerio.findOne({_id: id});
+    const {obras,titulo} = ministerio;
+    let dire = "";
+
+
+
+    for(let i = 0; i < obras.length; i++){
+        if(obras[i].filename === filename){
+            dire = obras[i].direView;  
+            ////direcion a eliminar
+            let targetPathObras = path.resolve(`src/public/${dire}`);
+            obras.splice(i,1);
+            ministerio.obras = obras;
+
+            ////termina
+
+            const ministerioDB = await Ministerio.findByIdAndUpdate(id,ministerio,{useFindAndModifiy: false});
+            await fs.unlink(targetPathObras);
+            req.flash('success_msg','Imágen eliminada correctamente');
+            res.json({msg: 'ok'});
+            return false; 
+        }
+    }
+
+    }catch(e){
+        console.log(e);
+        req.flash('error_msg','La Imágen no pudo ser eliminada');
+        res.json(false);
+    }
 })
 module.exports = router; 

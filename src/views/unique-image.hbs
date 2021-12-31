@@ -1,0 +1,17 @@
+{{#if image}}
+<div class="contenedor-img">
+    <div class="unique-image">
+        <img src="{{image}}" alt="">
+    </div>
+    <div class="salir-unique-img">
+        <a href="/"><button><i class="fas fa-sign-out-alt"></i></button></a>
+    </div>
+{{#if user}}
+    <div class="btn-eliminar-img-unique" > 
+       <button id="eliminar-img-unique" data-id="{{id}}" data-name="{{filename}}">Eliminar Imágen<i class="fas fa-trash"></i></button>
+    </div>
+{{/if}}
+</div>
+
+
+{{/if}}

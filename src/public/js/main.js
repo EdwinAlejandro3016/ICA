@@ -19,6 +19,31 @@
     const tituloMinisterio = document.getElementById('ministerio');
     const elemCarousel = document.querySelectorAll('.ministerios .carousel__elemento img');
 
+    try{
+    const btnUnique = document.getElementById('eliminar-img-unique');
+
+    btnUnique.addEventListener('click',async(e)=>{
+      const id = e.currentTarget.dataset.id;
+      const filename = e.currentTarget.dataset.name;
+      const peticion = await fetch('/form/image/eliminar',{
+          method: 'POST',
+          headers: {
+            "Content-type": "application/json"
+        },
+          body: JSON.stringify({
+            id,
+            filename
+        }),
+      })
+      const response = await peticion.json();
+        window.location.href = '/';
+    });
+
+
+
+  }catch(e){
+    console.log(e);
+  }
 
     //bars
     const bars = document.getElementById('bars');
@@ -30,22 +55,22 @@
 
       //animation scroll
 
-      $(document).ready(function(){
-        function scroll(event) {
-            if (this.hash !== "") {
-              event.preventDefault();
-              var hash = this.hash;
-              $('html, body').animate({
-                scrollTop: $(hash).offset().top
-              }, 500, function(){
-                window.location.hash = hash;
-              });
-            } // End if
+      // $(document).ready(function(){
+      //   function scroll(event) {
+      //       if (this.hash !== "") {
+      //         event.preventDefault();
+      //         var hash = this.hash;
+      //         $('html, body').animate({
+      //           scrollTop: $(hash).offset().top
+      //         }, 200, function(){
+      //           window.location.hash = hash;
+      //         });
+      //       } // End if
   
-          };// end function
-        $("a").on('click', scroll);
+      //     };// end function
+      //   $("a").on('click', scroll);
 
-      });
+      // });
 
     window.addEventListener('scroll',()=>{
         header.classList.toggle('sticky', window.scrollY > 0);
@@ -152,6 +177,7 @@ try{
 ///
 
     const btnEliminarMinisterio = document.querySelectorAll('.btn-eliminar-ministerio');
+    const btnEditarMinisterio = document.querySelectorAll('.btn-editar-ministerio');
 
     btnEliminarMinisterio.forEach(btn=>{
       btn.addEventListener('click',async(e)=>{
@@ -162,6 +188,25 @@ try{
             console.log(response);
             window.location.href = '/';
           }
+      })
+    })
+
+    btnEditarMinisterio.forEach(btn=>{
+      btn.addEventListener('click',async(e)=>{
+        const id = e.currentTarget.dataset.id;
+        const info = e.currentTarget.parentNode.parentNode.parentNode.children[1].textContent;
+        const peticion = await fetch(`/form/ministerio/editar`,{
+          method: 'POST',
+          headers: {
+            "Content-type": "application/json"
+        },
+          body: JSON.stringify({
+            id,
+            info
+        }),
+      })
+          const response = await peticion.json();
+           window.location.href = '/';
       })
     })
 
@@ -287,5 +332,16 @@ try{
     }
 
 
+//////////////// eliminar unica imagen carousel info
 
+const imagesInfo = document.querySelectorAll('.slide-carousel-info.slide-img'); 
+
+imagesInfo.forEach(img=>{
+  img.addEventListener('click',async(e)=>{
+    const filename = e.target.dataset.name;
+    const id = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.id;
+
+     window.location.href = `/form/image/vista/${filename}/${id}`;
+  }) 
+}) 
 
