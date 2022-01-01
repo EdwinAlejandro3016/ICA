@@ -89,7 +89,7 @@ router.post('/images/ministerios',async(req,res)=>{
 
         if(ext === '.png' || ext === '.jpg' || ext === '.gif' || ext === '.jpeg'){
                 if(!fs.existsSync(pathFolder)){
-                    await fs.mkdir(pathFolder,0o776);
+                    await fs.mkdir(pathFolder,{recursive: true});
                     await fs.rename(imageDire,targetPath);
                     const obrasFolder = `src/public/img/ministerios/${titulo}/obras`;
                     await fs.mkdir(obrasFolder);
