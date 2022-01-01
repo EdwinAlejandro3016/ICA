@@ -68,57 +68,58 @@ router.post('/ministerio/editar',async(req,res)=>{
 // crear nuevo ministerio
 router.post('/images/ministerios',async(req,res)=>{
     try{
-    const { titulo, info } = req.body;
-    const ext = path.extname(req.files.image[0].originalname).toLocaleLowerCase();
-    const imageDire = req.files.image[0].path; //direcion actual de la imagen
-    let {filename} = req.files.image[0];
-    filename = `${filename}${ext}`; //imagen con extension
-    let errors = [];
-    let obras = req.files.obras;
-    const pathFolder = `src/public/img/ministerios/${titulo}`; // direcion carpeta a mover
-    const targetPath = path.resolve(`src/public/img/ministerios/${titulo}/${filename}`); // direcion donde estara la imagen
-    const viewImg = `/img/ministerios/${titulo}/${filename}`; // direcion para buscar imagen en la vista
+        const { titulo, info } = req.body;
+        const ext = path.extname(req.files.image[0].originalname).toLocaleLowerCase();
+        const imageDire = req.files.image[0].path; //direcion actual de la imagen
+        let {filename} = req.files.image[0];
+        filename = `${filename}${ext}`; //imagen con extension
+        let errors = [];
+        let obras = req.files.obras;
+        const pathFolder = `src/public/img/ministerios/${titulo}`;  // direcion carpeta a mover
+        const targetPath = path.resolve(`src/public/img/ministerios/${titulo}/${filename}`); // direcion donde estara la imagen
+        const viewImg = `/img/ministerios/${titulo}/${filename}`; // direcion para buscar imagen en la vista
 
-    const espacios = titulo.replace(/\s/g,'-');
-    ///clases para carousel
-    const claseTarget = `glider-info-${espacios}`;
-    const claseDots = `dots-info-${espacios}`;
-    const clasePrev = `glider-prev-info-${espacios}`;
-    const claseNext = `glider-next-info-${espacios}`;
+        const espacios = titulo.replace(/\s/g,'-');
+        ///clases para carousel
+        const claseTarget = `glider-info-${espacios}`;
+        const claseDots = `dots-info-${espacios}`;
+        const clasePrev = `glider-prev-info-${espacios}`;
+        const claseNext = `glider-next-info-${espacios}`; 
 
-    if(ext === '.png' || ext === '.jpg' || ext === '.gif' || ext === '.jpeg'){
-        if(!fs.existsSync(pathFolder)){
-            await fs.mkdir(pathFolder);
-            await fs.rename(imageDire,targetPath);
-            const obrasFolder = `src/public/img/ministerios/${titulo}/obras`;
-            await fs.mkdir(obrasFolder);
-            obras.forEach(async(obra)=>{
-                let extObra = path.extname(obra.originalname).toLocaleLowerCase();
-                let filenameObra = obra.filename;
-                filenameObra =  `${filenameObra}${extObra}`;
-                let targetPathObras = path.resolve(`src/public/img/ministerios/${titulo}/obras/${filenameObra}`);
-                obra.direView = `/img/ministerios/${titulo}/obras/${filenameObra}`;
-                await fs.rename(obra.path,targetPathObras);
-            })
-            const newMinisterio = await new Ministerio
-            ({ titulo, info, filename: viewImg, carpeta: pathFolder, dire: targetPath, obras,
-                claseTarget,claseDots,clasePrev,claseNext }); 
-            const ministerioSaved = await newMinisterio.save();
-            req.flash('success_msg','Ministerio creado correctamente');
-            res.redirect('/');
-        }else{
-            await fs.unlink(imageDire);
-            obras.forEach(async(obra)=>{
-                await fs.unlink(obra.path);
-            })
-            req.flash('error_msg','Ya hay otro ministerio con este nombre');
-            res.redirect('/');
-        } 
 
-    }else{
-        req.flash('error_msg','Este formato de imagén no esta permitido');
-        res.redirect('/');
-    }
+        if(ext === '.png' || ext === '.jpg' || ext === '.gif' || ext === '.jpeg'){
+                if(!fs.existsSync(pathFolder)){
+                    await fs.mkdir(pathFolder,0o776);
+                    await fs.rename(imageDire,targetPath);
+                    const obrasFolder = `src/public/img/ministerios/${titulo}/obras`;
+                    await fs.mkdir(obrasFolder);
+                    obras.forEach(async(obra)=>{
+                        let extObra = path.extname(obra.originalname).toLocaleLowerCase();
+                        let filenameObra = obra.filename;
+                        filenameObra =  `${filenameObra}${extObra}`;
+                        let targetPathObras = path.resolve(`src/public/img/ministerios/${titulo}/obras/${filenameObra}`);
+                        obra.direView = `/img/ministerios/${titulo}/obras/${filenameObra}`;
+                        await fs.rename(obra.path,targetPathObras);
+                    })
+                    const newMinisterio = await new Ministerio
+                    ({ titulo, info, filename: viewImg, carpeta: pathFolder, dire: targetPath, obras,
+                        claseTarget,claseDots,clasePrev,claseNext }); 
+                    const ministerioSaved = await newMinisterio.save();
+                    req.flash('success_msg','Ministerio creado correctamente');
+                    res.redirect('/');
+                }else{
+                    await fs.unlink(imageDire);
+                    obras.forEach(async(obra)=>{
+                        await fs.unlink(obra.path);
+                    })
+                    req.flash('error_msg','Ya hay otro ministerio con este nombre');
+                    res.redirect('/');
+                } 
+
+            }else{
+                req.flash('error_msg','Este formato de imagén no esta permitido');
+                res.redirect('/');
+            }
 
     }catch(e){
         res.send(e);
