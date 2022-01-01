@@ -86,7 +86,7 @@ router.post('/images/ministerios',async(req,res)=>{
     const clasePrev = `glider-prev-info-${espacios}`;
     const claseNext = `glider-next-info-${espacios}`;
 
-    if(ext === '.png' || ext === '.jpg' || ext === '.gif' || ext === '.jpge'){
+    if(ext === '.png' || ext === '.jpg' || ext === '.gif' || ext === '.jpeg'){
         if(!fs.existsSync(pathFolder)){
             await fs.mkdir(pathFolder);
             await fs.rename(imageDire,targetPath);
@@ -104,7 +104,8 @@ router.post('/images/ministerios',async(req,res)=>{
             ({ titulo, info, filename: viewImg, carpeta: pathFolder, dire: targetPath, obras,
                 claseTarget,claseDots,clasePrev,claseNext }); 
             const ministerioSaved = await newMinisterio.save();
-            console.log(ministerioSaved); 
+            req.flash('success_msg','Ministerio creado correctamente');
+            res.redirect('/');
         }else{
             await fs.unlink(imageDire);
             obras.forEach(async(obra)=>{
@@ -120,10 +121,9 @@ router.post('/images/ministerios',async(req,res)=>{
     }
 
     }catch(e){
-        console.log(e);
+        res.send(e);
     }
-    req.flash('success_msg','Ministerio creado correctamente');
-    res.redirect('/');
+
 });
 
 
