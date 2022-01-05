@@ -300,6 +300,7 @@ img {
 
 .nav-responsive ul {
   width: 100%;
+  padding-left: 0rem;
 }
 
 .nav-responsive ul a {
@@ -920,6 +921,12 @@ section img {
   #header .navigation {
     display: none;
   }
+}
+
+#sobre-nosotros p {
+  color: #ddd;
+  text-align: center;
+  line-height: 1.5;
 }
 
 @media (max-width: 800px) {

@@ -1,22 +1,32 @@
 
 <header id="header">
     <a href="#" class="logo"><img src="/img/logo-ica.png" alt="ICA PENTECOSTES"></a>
+    {{#if sobre}}
     <ul class="navigation">
-        <a href="#inicio" class="activo"><li>Inicio</li></a>
-        <a href="#versiculo"><li>Versículo</li></a>
-        <a href="#ministerios"><li>Ministerios</li></a>
+        <a href="/#inicio"><li>Inicio</li></a>
+        <a href="/#versiculo"><li>Versículo</li></a>
+        <a href="/#ministerios"><li>Ministerios</li></a>
+        <a href="/sobre-nosotros" class="activo"><li>Sobre Nosotros</li></a>
     </ul>
     <i class="fas fa-bars icono" id="bars"></i>
-
+    {{else}}
+    <ul class="navigation">
+        <a href="/#inicio" class="activo"><li>Inicio</li></a>
+        <a href="/#versiculo"><li>Versículo</li></a>
+        <a href="/#ministerios"><li>Ministerios</li></a>
+        <a href="sobre-nosotros"><li>Sobre Nosotros</li></a>
+    </ul>
+    <i class="fas fa-bars icono" id="bars"></i>
+    {{/if}}
     <div class="nav-responsive"> 
         {{!-- <i class="fa fa-times icono" id="salir"></i> --}}
         <ul class="items-nav">
-            <a href="#inicio" class="activo"><li>Inicio</li></a> 
-            <a href="#versiculo"><li>Versículo Diario</li></a>
-            <a href="#ministerios"><li>Ministerios</li></a>
+            <a href="/#inicio" class="activo"><li>Inicio</li></a> 
+            <a href="/#versiculo"><li>Versículo Diario</li></a>
+            <a href="/#ministerios"><li>Ministerios</li></a>
+            <a href="/sobre-nosotros"><li>Sobre Nosotros</li></a>
         </ul>
     </div>
     {{> form-oracion}}
 
 </header>
-

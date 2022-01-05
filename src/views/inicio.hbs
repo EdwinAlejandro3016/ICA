@@ -1,9 +1,42 @@
+   
+   {{#unless sobre}}
     <div class="sec first" id="versiculo">
         <h2>Versículo Diario</h2>
         {{> versiculo }}
     </div>
+    {{/unless}}
+    {{#if sobre}}
+    <div class="sec" id="sobre-nosotros">
+        <h2>SOBRE NOSOTROS</h2>
+        <p>Somos una Iglesia Cristiana Apostólica, ubicada en el municipio
+            Andrés Bello del Estado Táchira - Venezuela. Nuestro propósito es Amar, 
+            adorar y servir al Dios vivo, siendo obedientes a su palabra al cumplir lo encomendado por él, 
+            haciendo discípulos,
+            enseñando la palabra de Dios y extendiendo el Reino de los cielos aquí en la tierra.
+        </p>
+        <h2>MISIÓN</h2>
+        <p>La ICA pentecostés como iglesia y centro apostólico, tiene como Misión la extensión del reino de Dios en el municipio
+        Andrés Bello del Estado Táchira y el mundo, según lo enseña la palabra de Dios (La Biblia) en Mateo 28:19-20.
+        Presentando el evangelio de salvación a los que no han creído en Jesús como señor y salvador, para liberarlos de toda
+        atadura del maligno, sanarles de toda enfermedad y toda dolencia, enseñándoles a vivir la palabra de Dios. Bendecir y
+        restaurar los hogares a un nivel integral, siendo conducidos a la adoración del único Dios verdadero y darles formación
+        como discípulos, servidores y ministros el evangelio de Jesucristo, y luego sean enviados llenos del Espíritu Santo según
+        su llamado dentro del ministerio a la extensión del reino en los confines de la tierra. Somos una iglesia prospera y
+        bendecida por Dios.</p>
+        <h2>Visión</h2>
+        <p>La ICA pentecostés tiene como Visión la extensión del reino de Dios en le tierra, procurando que sean salvos en
+        Jesús aquellos que no han conocido su evangelio y han sido predestinados por Dios; liberándolos, sanándolos y
+        enseñándoles a adorar al Dios vivo. Formándolos además como discípulos en la palabra de Dios y en la nueva vida en
+        Cristo, victoriosa y prospera en la esperanza de su regreso y vida eterna; perfeccionando también evolutivamente a los
+        discípulos para la obra del ministerio, a través de la implementación y plena activación de los cinco ministerios (Apóstol,
+        Profeta, Maestro, Evangelista y Pastor) en la iglesia local.</p>
+    </div>
+
+    {{else}}
+
     <div class="sec" id="ministerios">
         {{> carousel}}
     </div>
 
 
+    {{/if}}

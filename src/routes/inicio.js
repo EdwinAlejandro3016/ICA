@@ -8,5 +8,8 @@ router.get('/',async(req,res)=>{
     res.render('inicio',{ministerios, oraciones});
 });
 
+router.get('/sobre-nosotros',(req,res)=>{
+    res.render('inicio',{sobre: true});
+})
 
 module.exports = router;
